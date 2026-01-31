@@ -1,0 +1,81 @@
+"'Finalize Meeting' As screen":
+    OnVisible: |-
+        =UpdateContext({teamsInfo:
+        {
+            CalendarID: Blank(),
+            Subject: Blank(),
+            EventMessageContent: Blank(),
+            TimeZone: Text(Now(),DateTimeZone.UTC),
+            StartTime: Blank(),
+            EndTime: Blank()
+        }})
+
+    Dropdown1 As dropdown:
+        Default: ="Calendar"
+        Height: =70
+        Items: =Office365Outlook.CalendarGetTablesV2().value
+        Size: =21
+        Width: =575
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+    TextInput3 As text:
+        Default: =""
+        Height: =70
+        HintText: ="Subject"
+        Size: =21
+        Width: =575
+        X: =40
+        Y: =181
+        ZIndex: =2
+
+    TextInput3_1 As text:
+        Default: =""
+        Height: =319
+        HintText: ="Event Content"
+        Mode: =TextMode.MultiLine
+        Size: =21
+        Width: =575
+        X: =40
+        Y: =279
+        ZIndex: =3
+
+    Dropdown2 As dropdown:
+        Height: =70
+        Items: =Sequence(12,1)
+        Size: =21
+        Width: =108
+        X: =40
+        Y: =626
+        ZIndex: =4
+
+    Dropdown2_1 As dropdown:
+        Height: =70
+        Items: =Sequence(60,00)
+        Size: =21
+        Width: =108
+        X: =191
+        Y: =626
+        ZIndex: =5
+
+    Button16 As button:
+        Height: =70
+        OnSelect: |-
+            =UpdateContext({teamsInfo:
+            {
+                CalendarID: Dropdown1.Selected.id,
+                Subject: TextInput3.Text,
+                EventMessageContent: TextInput3_1.Text,
+                TimeZone: Text(Now(),DateTimeZone.UTC),
+                StartTime: DateAdd(Now(),1,TimeUnit.Days),
+                EndTime: DateAdd(DateAdd(Now(),1,TimeUnit.Hours),1,TimeUnit.Days)
+            }});
+            MicrosoftTeams.CreateTeamsMeeting(teamsInfo.CalendarID,teamsInfo.Subject,{content:"Meeting Content", contentType:"html"},"Pacific Standard Time",{dateTime: teamsInfo.StartTime},{dateTime: teamsInfo.EndTime},true,"teamsForBusiness",{requiredAttendees:"mperez@countyofsb.org; bmodell@countyofsb.org"});
+        Size: =24
+        Text: ="Button"
+        Width: =280
+        X: =187
+        Y: =788
+        ZIndex: =6
+

@@ -1,0 +1,306 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Training Tracker - MCLE Certificate:
+    Properties:
+      Height: =8.5*92
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: |
+        =UpdateContext({
+            Credits: [
+                //{Title: "General MCLE", Hours: 32},
+                //{Title: "Legal Ethics", Hours: 32},
+                ////{Title: "Recognition & Elimination of Bias", Hours: 32},
+                {Title: "Implicit Bias", Hours: 32},
+                //{Title: "Prevention & Detection Competence", Hours: 32},
+                //{Title: "Wellness Competence", Hours: 32},
+                //{Title: "Technology in the Practice of Law", Hours: 32},
+                //{Title: "Civility in the Legal Profession", Hours: 32}
+            ],
+            ProviderName: "Santa Barbara Public Defender",
+            ProviderNum: 123456789,
+            Activity: {
+                Title: "MCLE Activity",
+                Location: "Remote",
+                Date: Date(2024, 2, 13),
+                Time: Time(20, 15, 45)
+            },
+            Index: 1,
+            AttendanceRecord: LookUp(MCLETrainingAttendance, ID = First(AttendanceRecords).ID)
+        });
+        Clear(CertificatePDFs);
+
+        If(IsBlankOrError(MeetingRecord),
+            UpdateContext({
+                MeetingRecord: First(MCLETrainings)
+            })
+        );
+      Width: =11*92
+    Children:
+      - MCLE_Certificate_Timer:
+          Control: Timer@2.1.0
+          Properties:
+            AutoStart: =true
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Fill, 90%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Duration: =1
+            Fill: =RGBA(56, 96, 178, 1)
+            Font: =Font.'Open Sans'
+            Height: =40
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+            OnTimerEnd: |-
+              =UpdateContext({
+                  AttendanceRecord: Last(FirstN(AttendanceRecords, Index + 1)),
+                  Index: Index + 1
+              });
+
+              If(Index > CountRows(AttendanceRecords) + 1,
+                  UpdateContext({More: false});
+                  Navigate('General Success Screen');
+                  ,
+
+                  Collect(CertificatePDFs,
+                      PDF(MCLE_Certificate_Container, {
+                          Orientation: PaperOrientation.Landscape,
+                          Size: PaperSize.Letter,
+                          Margin: "0"
+                      })
+                  );
+                  UpdateContext({
+                      AttendanceRecord: Last(FirstN(AttendanceRecords, Index + 1)),
+                      Index: Index + 1
+                  });
+              );
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            Repeat: =true
+            Start: =Index <= CountRows(AttendanceRecords)
+            Visible: =false
+            Width: =160
+            X: =963
+      - MCLE_Certificate_Container:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Width: =Parent.Width
+          Children:
+            - MCLE_Certificate_Outer_Border:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  BorderThickness: =5
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Height: =Parent.Height - 2*Self.Y
+                  Width: =Parent.Width - 2*Self.X
+                  X: =20
+                  Y: =Self.X
+            - MCLE_Certificate_Inner_Border:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  BorderThickness: =1
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Height: |
+                    =Parent.Height - 2*Self.Y
+                  Width: |+
+                    =Parent.Width - 2 * Self.X
+
+                  X: =27
+                  Y: =Self.X
+            - MCLE_Certificate_Upper_Text:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =49
+                  Size: =16
+                  Text: ="Minimum Continuing Legal Education (MCLE) Credit Hours Awarded for the Above Activity:"
+                  Width: =860
+                  X: =(Parent.Width - Self.Width)/2
+                  Y: =260
+            - MCLE_Certificate_Table:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  AutoHeight: =true
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  Font: =Font.Georgia
+                  Height: =330
+                  HtmlText: |-
+                    ="<table style='table-layout: fixed;width: 100%;border-collapse: collapse;' border>"&
+                    "<thead style='color: #169; font-size: 1.2em'><th style='width: 70%;'>Credit Type</th><th>Credit Hours</th></thead>"&
+                    "<tbody>"&
+                    Concat(ForAll(LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).MCLE_Category, {Title: Value, Hours: DateDiff(LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).TrainingStartDate, LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).TrainingEndDay, TimeUnit.Minutes) / 60 / CountRows(LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).MCLE_Category)}), "<tr><td style='text-align: right;padding:5px;'>"&Title&"</td><td style='padding:5px;text-align:center;'>"&Hours&"</td></tr>", "")&
+                    "</tbody><tfoot>"&
+                    "<tr><th style='text-align: right;padding:2%;border-left-color: transparent;border-bottom-color: transparent;color: #169; font-size: 1.2em'>Total</th><td style='padding:5px;'>"&DateDiff(LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).TrainingStartDate, LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).TrainingEndDay, TimeUnit.Minutes) / 60&"</td></tr>"&
+                    "</tfoot></table>"
+                  Size: =10
+                  Width: =410
+                  X: =315
+                  Y: =319
+            - MCLE_Certificate_Title:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  AutoHeight: =true
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  Font: =Font.Georgia
+                  Height: =294
+                  HtmlText: ="<center>California MCLE Certificate of <font color='#169'>Attendance</font></center>"
+                  Size: =32
+                  Width: =531
+                  X: =(Parent.Width - Self.Width)/2
+                  Y: =20
+            - MCLE_Certificate_Lower_Text:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =55
+                  Size: =16
+                  Text: ="Below section is to be completed by the California Licensee and/or the Provider after participation in the activity"
+                  Width: =860
+                  X: =(Parent.Width - Self.Width)/2
+                  Y: =MCLE_Certificate_Table.Y + MCLE_Certificate_Table.Height + 10
+            - MCLE_Certificate_CA_Name:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  AutoHeight: =true
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  Font: =Font.Georgia
+                  Height: =103
+                  HtmlText: |-
+                    ="<p style='margin-bottom: 2px;line-height:0.5;'>"&AttendanceRecord.Attendee
+                    &"</p>"&
+                    "<p style='border-top: 2px solid;text-align: center;'><b>Name of CA Licensee</b> (<i>print name</i>)</p>"
+                  Size: =12
+                  Width: =302
+                  X: =108
+                  Y: =679
+            - MCLE_Certificate_CA_Bar:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  AutoHeight: =true
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  Font: =Font.Georgia
+                  Height: =103
+                  HtmlText: |-
+                    ="<p style='margin-bottom: 2px;line-height:0.5;'>"&"&nbsp"&"</p>"&
+                    "<p style='border-top: 2px solid;text-align: center;'><b>CA Bar Number</b></p>"
+                  Size: =12
+                  Width: =155
+                  X: =460
+                  Y: =679
+            - MCLE_Certificate_CA_Signature:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  AutoHeight: =true
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  Font: =Font.Georgia
+                  Height: =103
+                  HtmlText: |-
+                    ="<p style='margin-bottom: 2px;line-height:0.5;'>&nbsp;</p>"&
+                    "<p style='border-top: 2px solid;text-align: center;'><b>Signature of CA Licensee</b></p>"
+                  Size: =12
+                  Width: =302
+                  X: =666
+                  Y: =679
+            - MCLE_Certificate_Provider_Name:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =32
+                  Size: =13
+                  Text: |-
+                    ="Provider Name: "& LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).'Training Host'
+                  Width: =617
+                  X: =84
+                  Y: =134
+            - MCLE_Certificate_Activity_Title:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =32
+                  Size: =13
+                  Text: |-
+                    ="Title of Activity: "& LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).Training
+                  Width: =860
+                  X: =84
+                  Y: =165
+            - MCLE_Certificate_Activity_Location:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =31
+                  Size: =13
+                  Text: |-
+                    ="Location of the Activity: "& LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).Location
+                  Width: =860
+                  X: =84
+                  Y: =193
+            - MCLE_Certificate_Activity_Time:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =31
+                  Size: =13
+                  Text: |-
+                    ="Date & Time of the Activity: "& Text(LookUp(MCLETrainings, ID=AttendanceRecord.TrainingID).TrainingStartDate, DateTimeFormat.ShortDateTime)
+                  Width: =860
+                  X: =84
+                  Y: =226
+            - MCLE_Certificate_Provider_Number:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.Georgia
+                  FontWeight: =FontWeight.Bold
+                  Height: =31
+                  Size: =13
+                  Text: |-
+                    ="Provider No.: "& ProviderNum
+                  Width: =279
+                  X: =701
+                  Y: =134
+      - MCLE_Certificate_Please Wait:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(215, 223, 240, 1)
+            Font: =Font.'Open Sans'
+            Height: =Parent.Height
+            Size: =20
+            Text: ="Please Wait"
+            Visible: =false
+            Width: =Parent.Width

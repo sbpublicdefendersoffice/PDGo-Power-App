@@ -1,0 +1,209 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Profile - Selected Team Member:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: |-
+        =Set(m365TeamMember,Office365Users.MyProfile());
+        UpdateContext({_photo:IfError(Office365Users.UserPhotoMetadata(SelectedTeamMember.'Email Address').HasPhoto,false)});
+    Children:
+      - Background Color_5:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderStyle: =BorderStyle.None
+            Fill: =fxTheme.Header.BGColor
+            Height: =420
+            Width: =Parent.Width
+      - Profile Selected Team Member Back Button:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Back();
+            Width: =fxTheme.Header.IconSize
+            X: =42
+            Y: =30
+      - Profile Selected Team Member About Container:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =716
+            Width: =640
+            X: =(Parent.Width - Self.Width)/2
+            Y: =420
+          Children:
+            - Profile Selected Team Member About Me Label:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  Height: =44
+                  Text: ="About Me"
+                  Width: =148
+                  X: =36
+                  Y: =66
+            - Profile Selected Team Member About Me Description:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =188
+                  Overflow: =Overflow.Scroll
+                  Size: =18
+                  Text: =SelectedTeamMember.'About Me'
+                  VerticalAlign: =VerticalAlign.Top
+                  X: =36
+                  Y: =110
+            - Profile Selected Team Member Phone Number:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Text: =SelectedTeamMember.'Phone Number'
+                  Width: =448
+                  X: =133
+                  Y: =331
+            - Profile Selected Team Member Email Address:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Text: =SelectedTeamMember.'Email Address'
+                  Width: =449
+                  X: =133
+                  Y: =434
+            - Icon8_2:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =50
+                  Icon: =Icon.Phone
+                  Width: =50
+                  X: =56
+                  Y: =341
+            - Icon9_2:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Icon: =Icon.Mail
+                  X: =49
+                  Y: =440
+            - PhoneOverlapLaunchButtonTeamMember:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =54
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =
+                  OnSelect: =Launch("tel://"&'Profile Selected Team Member Phone Number'.Text)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =
+                  PressedFill: =RGBA(0,0,0,.25)
+                  Text: =
+                  X: =56
+                  Y: =342
+            - EmailOverlapButtonTeamMember:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =54
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =
+                  OnSelect: =Launch("mailto:"&'Profile Selected Team Member Email Address'.Text)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =
+                  PressedFill: =RGBA(0,0,0,.25)
+                  Text: =
+                  Width: =436
+                  X: =36
+                  Y: =445
+      - Profile Selected Team Member Full Name_1:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Font: =Font.Lato
+            Height: =53
+            Italic: =true
+            Size: =24
+            Text: =IfError(Office365Users.UserProfile(SelectedTeamMember.'Email Address').JobTitle,"")
+            Width: =580
+            X: =30
+            Y: =346
+      - Profile Selected Team Member Full Name:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Font: =Font.Lato
+            Height: =51
+            Size: =26
+            Text: =SelectedTeamMember.'Full Name'
+            Width: =580
+            X: =30
+            Y: =295
+      - Profile Selected Team Member Profile Picture:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            ContentLanguage: =
+            Height: =200
+            Image: =If(IfError(Office365Users.UserPhotoMetadata(SelectedTeamMember.'Email Address').HasPhoto,false),Office365Users.UserPhoto(SelectedTeamMember.'Email Address'),SampleImage)
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: ='Profile Selected Team Member Profile Picture'.Height
+            RadiusBottomRight: ='Profile Selected Team Member Profile Picture'.Height
+            RadiusTopLeft: ='Profile Selected Team Member Profile Picture'.Height
+            RadiusTopRight: ='Profile Selected Team Member Profile Picture'.Height
+            Visible: =_photo
+            Width: =200
+            X: =(Parent.Width - Self.Width)/2
+            Y: =75
+      - Circle2:
+          Control: Circle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(56, 96, 178, 1)
+            Height: =200
+            Visible: =!_photo
+            Width: =200
+            X: =220
+            Y: =75
+      - Label22:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.Lato
+            Height: =200
+            Size: =46
+            Text: =Concatenate(Left(m365TeamMember.GivenName,1),Left(m365TeamMember.Surname,1))
+            Visible: =!_photo
+            Width: =200
+            X: =220
+            Y: =75

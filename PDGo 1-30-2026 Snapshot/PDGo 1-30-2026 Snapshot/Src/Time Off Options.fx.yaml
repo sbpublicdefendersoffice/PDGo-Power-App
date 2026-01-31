@@ -1,0 +1,104 @@
+"'Time Off Options' As screen":
+
+    Container2_2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        Y: |
+            =0
+        ZIndex: =1
+
+        Container16_3 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            Label4_23 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.'Lato Black'
+                FontWeight: =FontWeight.Bold
+                Height: =111
+                Size: =76
+                Text: ="Time Off"
+                Width: =Parent.Width
+                Y: =(Parent.Height - Self.Height) / 2
+                ZIndex: =1
+
+            "'TO Request List Screen Header Back_1' As icon.ArrowLeft":
+                Color: =fxTheme.Header.TextColor
+                Height: =70
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Back(ScreenTransition.UnCoverRight);
+                Width: =71
+                X: =20
+                Y: =20
+                ZIndex: =2
+
+        Container17_2 As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =3
+
+            Icon6_3 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.AddDocument
+                OnSelect: =Navigate('TO Request Screen')
+                Width: =128
+                X: =(Parent.Width - Self.Width) / 2 - 125
+                Y: =137
+                ZIndex: =2
+
+            Label1_4 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: =Navigate('TO Request Screen')
+                Size: =21
+                Text: ="New Request"
+                Width: =204
+                X: =(Parent.Width - Self.Width) / 2 - 125
+                Y: =274
+                ZIndex: =3
+
+            Icon6_4 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.View
+                OnSelect: |-
+                    =//Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                    Navigate('Time Off Request - Admin - View List Screen',ScreenTransition.Cover)
+                Rotation: =
+                Width: =128
+                X: =(Parent.Width - Self.Width) / 2 + 125
+                Y: =137
+                ZIndex: =4
+
+            Label1_5 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: |-
+                    =//Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                    Navigate('Time Off Request - Admin - View List Screen',ScreenTransition.Cover)
+                Size: =21
+                Text: ="Manage Requests"
+                Width: =204
+                X: =(Parent.Width - Self.Width) / 2 + 125
+                Y: =274
+                ZIndex: =5
+

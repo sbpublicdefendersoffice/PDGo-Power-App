@@ -1,0 +1,209 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Home Screen:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: "= Set(IsSidebarNotOpen, If('Home Screen'.Width < 600, 100, 20));\n   \nSet(\n    UserData,\n    LookUp(\n        Users,\n        'Email Address' = User().Email\n    )\n);\n\nRefresh(Users);\nRefresh('Users-Teams');\nRefresh(Teams)"
+    Children:
+      - Container2:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+            Y: |
+              =0
+          Children:
+            - Container16:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  Fill: =RGBA(0, 18, 107, 1)
+                  FillPortions: =0
+                Children:
+                  - Label4_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Lato Black'
+                        FontWeight: =FontWeight.Bold
+                        Height: =111
+                        Size: =96
+                        Text: ="PDGo"
+                        Width: =Parent.Width
+                        Y: =(Parent.Height - Self.Height) / 2
+                  - Icon3:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Icon: =Icon.Person
+                        OnSelect: =Navigate(Profile, ScreenTransition.Cover);
+                        X: =20
+                        Y: =20
+                  - Icon5:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =50
+                        Icon: =Icon.Settings
+                        OnSelect: =Navigate('Profile - Settings', ScreenTransition.Cover)
+                        Width: =50
+                        X: =Parent.Width - Self.Width - 20
+                        Y: =20
+            - Container17:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Children:
+                  - Icon6:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =128
+                        Icon: =Icon.ToolsWrench
+                        OnSelect: =Navigate('Facility Request - Home')
+                        Width: =128
+                        X: =125
+                        Y: =69
+                  - Label1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Facility Requests"
+                        Width: =204
+                        X: =87
+                        Y: =206
+                  - Icon6_1:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =128
+                        Icon: =Icon.Airplane
+                        OnSelect: |-
+                          =//Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                          Navigate('Time Off Options',ScreenTransition.Cover)
+                        Rotation: =-45
+                        Width: =128
+                        X: =375
+                        Y: =69
+                  - Label1_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: |-
+                          =//Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                          Navigate('Time Off Options',ScreenTransition.Cover)
+                        Text: ="Time Off Requests"
+                        Width: =204
+                        X: =337
+                        Y: =206
+                  - Icon6_2:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =128
+                        Icon: =Icon.ListWatchlistRemind
+                        OnSelect: =Navigate('Training Options', ScreenTransition.Cover)
+                        Width: =128
+                        X: =125
+                        Y: =379
+                  - Label1_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =Navigate('Training Tracker - Home', ScreenTransition.Cover)
+                        Text: ="Training"
+                        Width: =204
+                        X: =87
+                        Y: =516
+                  - HomeScreen Admin Icon:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =128
+                        Icon: =Icon.Tools
+                        OnSelect: =Navigate('Admin - Tools', ScreenTransition.Cover)
+                        Visible: =CountRows(UserRecord.Capabilities) > 0
+                        Width: =128
+                        X: =375
+                        Y: =379
+                  - HomeScreen Admin Label:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =Navigate('Admin - Tools', ScreenTransition.Cover)
+                        Text: ="Admin Tools"
+                        Visible: =CountRows(UserRecord.Capabilities) > 0
+                        Width: =204
+                        X: =337
+                        Y: =516
+                  - Icon7:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =128
+                        Icon: =Icon.Laptop
+                        Width: =128
+                        X: =125
+                        Y: =634
+                  - Label9:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        OnSelect: =Launch("https://apps.gov.powerapps.us/play/e/default-e64b3773-9890-4a2f-87cd-23725df35ace/a/f6450f20-7440-48ad-9e16-de22b828b577?tenantId=e64b3773-9890-4a2f-87cd-23725df35ace&hint=fe0146ca-40da-4b3d-94ae-91d7acbb3dda&sourcetime=1731022214913")
+                        Text: ="Launch Helpdesk"
+                        Width: =175
+                        X: =101
+                        Y: =746
+                  - Icon7_2:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =112
+                        Icon: =Icon.Globe
+                        OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                        Width: =112
+                        X: =382
+                        Y: =634
+                  - Label9_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                        Text: ="Resources"
+                        Width: =175
+                        X: =351
+                        Y: =746

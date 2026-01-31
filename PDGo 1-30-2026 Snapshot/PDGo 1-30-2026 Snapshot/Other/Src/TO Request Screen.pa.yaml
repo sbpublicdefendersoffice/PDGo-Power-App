@@ -1,0 +1,514 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  TO Request Screen:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: =If(!IsBlank(Edit),Select(Button17))
+    Children:
+      - TO Request Screen Main Container:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =10
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =1
+            Width: =Parent.Width
+          Children:
+            - TO Request Screen Header:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =fxTheme.Header.BGColor
+                  FillPortions: =0
+                  Height: =75
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  LayoutMinHeight: =100
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                Children:
+                  - TOHeaderContainer:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        LayoutMinHeight: =Parent.Height
+                        Width: =Parent.Width
+                      Children:
+                        - TO Request Screen Header Back:
+                            Control: Classic/Icon@2.5.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =fxTheme.Header.TextColor
+                              Icon: =Icon.ArrowLeft
+                              OnSelect: =Back();
+                        - TO Request Screen Header Text:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =fxTheme.Header.TextColor
+                              Font: =Font.Lato
+                              Height: =40
+                              Size: =20
+                              Text: ="Requests"
+                              Width: =150
+                              X: =(Parent.Width-Self.Width)/2
+                              Y: =(Parent.Height-Self.Height)/2
+                        - TO Request Screen Header Profile:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: =100
+                              Image: =
+                              ImagePosition: =ImagePosition.Fill
+                              Visible: =false
+                              Width: =100
+                        - TO Request Screen Header Name:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.Lato
+                              Height: =40
+                              Size: =15
+                              Text: ="Hello, " & User().FullName
+                              Visible: ='TO Request Screen'.Size<>1
+                              Width: =150
+                              X: =(Parent.Width-Self.Width)/2
+                              Y: =(Parent.Height-Self.Height)/2
+                        - Icon1:
+                            Control: Classic/Icon@2.5.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Icon: =Icon.AddToCalendar
+                              X: =Parent.Width-Self.Width
+                              Y: =(Parent.Height-Self.Height)/2
+                        - Button11:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(0, 0, 0, 0)
+                              Font: =Font.'Open Sans'
+                              Height: =Icon1.Height
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, .25), -20%)
+                              OnSelect: =Navigate('TO Request Date Screen',ScreenTransition.Cover)
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =ColorFade(RGBA(56, 96, 178, .50), -20%)
+                              Text: =
+                              Width: =Icon1.Width
+                              X: =Icon1.X
+                              Y: =Icon1.Y
+            - Send Request Container:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  FillPortions: =0
+                  Height: =Parent.Height/3
+                Children:
+                  - TO Request Screen Dates Gallery:
+                      Control: Gallery@2.15.0
+                      Variant: Vertical
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: ='TO Request Screen Submit Button'.Y-5
+                        Items: =RequestDates
+                        TemplatePadding: =0
+                        TemplateSize: |-
+                          =//If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+                          75
+                        Width: =Parent.Width
+                      Children:
+                        - TO Request Screen Dates Gallery Columns:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              Height: =Parent.TemplateHeight
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                              LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                              Width: =Parent.TemplateWidth
+                            Children:
+                              - TO Request Screen Dates Date Range:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: =ThisItem.StartDate & "-" & ThisItem.EndDate
+                                    Width: |
+                                      =
+                                      Parent.Width/4
+                              - TO Request Screen Dates Time Range:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: =ThisItem.StartTime & "-" & ThisItem.EndTime
+                                    Width: =Parent.Width/4
+                              - TO Request Screen Dates Reason:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =40
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: |
+                                      =ThisItem.Reason
+                                    Width: =Parent.Width/6
+                              - TO Request Screen Dates Edit Button:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =ColorFade(Self.Fill, -15%)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                    Fill: =RGBA(56, 96, 178, 1)
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                                    HoverColor: =RGBA(255, 255, 255, 1)
+                                    HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =50
+                                    OnSelect: |-
+                                      =Navigate('TO Request Date Screen', ScreenTransition.Cover, {Edit: ThisItem})
+                                    PressedBorderColor: =Self.Fill
+                                    PressedColor: =Self.Fill
+                                    PressedFill: =Self.Color
+                                    Size: =10
+                                    Text: ="Edit"
+                                    Width: =Parent.Width/8
+                              - TO Request Screen Dates Delete Button:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =ColorFade(Self.Fill, -15%)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                    Fill: =RGBA(151, 0, 0, 1)
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                                    HoverColor: =RGBA(255, 255, 255, 1)
+                                    HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    OnSelect: =Remove(RequestDates, ThisItem)
+                                    PressedBorderColor: =Self.Fill
+                                    PressedColor: =Self.Fill
+                                    PressedFill: =Self.Color
+                                    Size: =10
+                                    Text: ="Delete"
+                                    Width: =Parent.Width/8
+                  - TO Request Screen Add Date Button:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(56, 96, 178, .80)
+                        Font: =Font.Lato
+                        Height: =40
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: =Navigate('TO Request Date Screen')
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Size: =15
+                        Text: ="Add Request"
+                        Visible: =false
+                        Width: =160
+                        Y: =303
+                  - TO Request Screen Comments Input:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Default: =If(IsBlank(Edit), "", Edit.Comments)
+                        Font: =Font.Lato
+                        Height: =40
+                        HintText: ="Additional Comments"
+                        HoverBorderColor: =RGBA(0, 18, 107, 1)
+                        HoverFill: =RGBA(186, 202, 226, 1)
+                        Mode: =TextMode.MultiLine
+                        Size: =13
+                        Visible: =false
+                        Width: =320
+                  - TO Request Screen Submit Button:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(56, 96, 178, 1)
+                        Font: =Font.Lato
+                        Height: =64
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: |
+                          =
+                          /*
+                          If(!IsBlankOrError(Edit), Patch(TimeOffRequests, Edit, {
+                              Status: {Value: "Cancelled"}
+                          }));
+                          */
+
+                          With({
+                                  Request: Patch(TimeOffRequests, Defaults(TimeOffRequests), {
+                                  Reason: 'TO Request Screen Comments Input'.Text,
+                                  Requester: UserRecord.ID,
+                                  Status: {Value: "Pending"},
+                                  Comments: ""
+                              })
+                          },
+                              ForAll(RequestDates, With({Date: ThisRecord},
+                                      Patch(TimeOffRequestDays,
+                                          If(IsBlankOrError(Date.ID),
+                                              Defaults(TimeOffRequestDays),
+                                              LookUp(TimeOffRequestDays, ID = Date.ID)
+                                          ),
+                                          {
+                                              //Request: {Id: Request.ID, Value: Request.ID},\
+                                              Request: Request.ID,
+                                              StartDate: Date.StartDate,
+                                              EndDate: Date.EndDate,
+                                              EntireDay: Date.EntireDay,
+                                              StartTime: Date.StartTime,
+                                              EndTime: Date.EndTime,
+                                              MetricDate: Concatenate(Month(Today()),"/",Year(Today())),
+                                              //Reason:{ Id: LookUp(RequestCodes, Title = Date.Reason).ID, Value: Date.Reason },
+                                              Reason: Date.Reason,
+                                              AdditionalComments: Date.Comments,
+                                              ITEquipment: Date.ITEquipment
+                                          }
+                                      )
+                                  );
+                              );
+                          );
+
+                          Clear(RequestDates);
+                          Reset('TO Request Screen Comments Input');
+
+                          Navigate('General Success Screen', ScreenTransition.CoverRight);
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Size: =15
+                        Text: ="Submit Request"
+                        Width: =Parent.Width/1.1
+                        X: =(Parent.Width-Self.Width)/2
+                        Y: =Parent.Height-(1.125*Self.Height)
+            - Pending Requests:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  FillPortions: =0
+                  Height: =Parent.Height/3
+                Children:
+                  - TO Request Screen Dates Gallery_1:
+                      Control: Gallery@2.15.0
+                      Variant: Vertical
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =Parent.Height-Label3.Height
+                        Items: =Sort(Filter(TimeOffRequests,Requester = UserData.ID And Status.Value = "Pending"),ID,SortOrder.Descending)
+                        TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+                        Width: =Parent.Width
+                        Y: =40
+                      Children:
+                        - TO Request Screen Dates Gallery Columns_1:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              Height: =Parent.TemplateHeight
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                              LayoutGap: =20
+                              LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                              Width: =Parent.TemplateWidth
+                            Children:
+                              - TO Request Screen Dates Date Range_1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: =LookUp(TimeOffRequestDays,ThisItem.ID = Request).StartDate & "-" & LookUp(TimeOffRequestDays,ThisItem.ID = Request).EndDate
+                                    Width: |
+                                      =
+                                      Parent.Width*.20
+                              - TO Request Screen Dates Time Range_1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: '=ThisItem.Status.Value   '
+                                    Width: =Parent.Width*.20
+                              - TO Request Screen Dates Reason_1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.'Open Sans'
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =40
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: =DateDiff(Today(),LookUp(TimeOffRequestDays,Request = ThisItem.ID).StartDate,TimeUnit.Days)&" Days"
+                                    Width: =Parent.Width*.10
+                  - Label3:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =fxTheme.Header.BGColor
+                        Font: =Font.Lato
+                        Height: =40
+                        Size: =20
+                        Text: ="Pending Requests"
+                        Width: =Parent.Width
+            - Request History:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  FillPortions: =0
+                  Height: =Parent.Height/3
+                Children:
+                  - TO Request Screen Dates Gallery_2:
+                      Control: Gallery@2.15.0
+                      Variant: Vertical
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =Parent.Height-Label3_1.Height
+                        Items: =Sort(Filter(TimeOffRequests,Requester = UserData.ID And Status.Value <> "Pending"),ID,SortOrder.Descending)
+                        TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+                        Width: =Parent.Width
+                        Y: =40.333333333333314
+                      Children:
+                        - TO Request Screen Dates Gallery Columns_2:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              Height: =Parent.TemplateHeight
+                              LayoutAlignItems: =LayoutAlignItems.Stretch
+                              LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                              LayoutGap: =20
+                              LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                              Width: =Parent.TemplateWidth
+                            Children:
+                              - TO Request Screen Dates Date Range_2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: =LookUp(TimeOffRequestDays,ThisItem.ID = Request).StartDate & "-" & LookUp(TimeOffRequestDays,ThisItem.ID = Request).EndDate
+                                    Width: |
+                                      =
+                                      Parent.Width*.20
+                              - TO Request Screen Dates Time Range_2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =60
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: '=ThisItem.Status.Value   '
+                                    Width: =Parent.Width*.20
+                              - TO Request Screen Dates Reason_2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.'Open Sans'
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =40
+                                    Size: =If('TO Request Screen'.Size=1,15,20)
+                                    Text: =DateDiff(Today(),LookUp(TimeOffRequestDays,Request = ThisItem.ID).StartDate,TimeUnit.Days)&" Days"
+                                    Width: =Parent.Width*.10
+                  - Label3_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Fill: =fxTheme.Header.BGColor
+                        Font: =Font.Lato
+                        Height: =40
+                        Size: =20
+                        Text: ="Completed Requests"
+                        Width: =Parent.Width
+                        Y: =0.3333333333333144
+      - Button17:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(56, 96, 178, 1)
+            Font: =Font.'Open Sans'
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+            OnSelect: |-
+              =Navigate('TO Request Date Screen', ScreenTransition.Cover, {Edit: Edit})
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            Text: =
+            Visible: =false
+            Y: =290

@@ -1,0 +1,142 @@
+Screen1 As screen:
+    OnVisible: =Set(csvtemp,'PowerAppV2->Initializevariable,Getfilecontent,Compose'.Run(Substitute(UserRecord.'Full Name'," ","")&"SelfReport"))
+
+    Container31 As groupContainer.manualLayoutContainer:
+        Height: =1136
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        Width: =640
+        ZIndex: =1
+
+        Label23 As label:
+            Height: =203
+            Overflow: =Overflow.Scroll
+            Size: =21
+            Text: =csvtemp.csvcontents
+            Width: =500
+            X: =45
+            Y: =718
+            ZIndex: =1
+
+        Button18 As button:
+            Height: =70
+            OnSelect: =Set(csvtemp,'PowerAppV2->Initializevariable,Getfilecontent,Compose'.Run("MarkPerezSelfReport"))
+            Size: =24
+            Text: ="Load File"
+            Width: =280
+            Y: =934
+            ZIndex: =2
+
+        Button19 As button:
+            Height: =70
+            OnSelect: |-
+                =Set(csvtemp,{csvcontents:csvtemp.csvcontents & Concatenate(TextInput4.Text,",",DatePicker2.SelectedDate,",",DatePicker2_1.SelectedDate,",",TextInput4_1.Text)& Char(13)})
+            Size: =24
+            Text: ="AddLine"
+            Width: =280
+            X: =314
+            Y: =934
+            ZIndex: =3
+
+        TextInput4 As text:
+            Default: =
+            Height: =70
+            HintText: ="Meeting 1"
+            Size: =21
+            Width: =500
+            X: =45
+            Y: =102
+            ZIndex: =4
+
+        Label25 As label:
+            Height: =70
+            Size: =21
+            Text: ="Training Title"
+            Width: =500
+            X: =45
+            Y: =32
+            ZIndex: =5
+
+        Label25_1 As label:
+            Height: =70
+            Size: =21
+            Text: ="Start Date"
+            Width: =500
+            X: =45
+            Y: =192
+            ZIndex: =6
+
+        Label25_2 As label:
+            Height: =70
+            Size: =21
+            Text: ="Ending Date"
+            Width: =500
+            X: =45
+            Y: =373
+            ZIndex: =7
+
+        Label25_4 As label:
+            Height: =70
+            Size: =21
+            Text: ="Hours"
+            Width: =500
+            X: =45
+            Y: =508
+            ZIndex: =8
+
+        TextInput4_1 As text:
+            Default: =
+            Height: =70
+            HintText: ="e.g. 2.5"
+            Size: =21
+            Width: =500
+            X: =45
+            Y: =592
+            ZIndex: =9
+
+        DatePicker2 As datepicker:
+            CalendarHeaderFill: =App.Theme.Colors.Primary
+            Height: =70
+            HoverDateFill: =App.Theme.Colors.Lighter70
+            maximumHeight: =1136
+            maximumWidth: =640
+            SelectedDateFill: =App.Theme.Colors.Primary
+            Size: =24
+            Width: =500
+            X: =45
+            Y: =295
+            ZIndex: =10
+
+        DatePicker2_1 As datepicker:
+            CalendarHeaderFill: =App.Theme.Colors.Primary
+            Height: =70
+            HoverDateFill: =App.Theme.Colors.Lighter70
+            maximumHeight: =1136
+            maximumWidth: =640
+            SelectedDateFill: =App.Theme.Colors.Primary
+            Size: =24
+            Width: =500
+            X: =45
+            Y: =436
+            ZIndex: =11
+
+        Button20 As button:
+            Height: =70
+            OnSelect: =SaveReportFile.Run("MarkPerezSelfReport.csv",csvtemp.csvcontents)
+            Size: =24
+            Text: ="SaveFile"
+            Width: =280
+            X: =186
+            Y: =1029
+            ZIndex: =12
+
+    Gallery8 As gallery.galleryVertical:
+        DelayItemLoading: =true
+        Items: =Split(csvtemp.csvcontents,",")
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplateSize: =310
+        Visible: =false
+        Y: =40
+        ZIndex: =2
+

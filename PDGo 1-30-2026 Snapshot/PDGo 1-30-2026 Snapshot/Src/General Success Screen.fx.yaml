@@ -1,0 +1,25 @@
+"'General Success Screen' As screen":
+    OnVisible: |
+        =//Reset(Timer1);
+
+    Label2 As label:
+        Align: =Align.Center
+        Height: =100
+        Size: =22
+        Text: ="Your Request has been submitted, Redirecting..."
+        Width: =Parent.Width
+        Y: =(Parent.Height-Self.Height)/2
+        ZIndex: =1
+
+    Timer1 As timer:
+        AutoPause: =false
+        AutoStart: =true
+        Duration: =1500
+        Height: =70
+        OnTimerEnd: =Navigate('Home Screen',ScreenTransition.Fade)
+        Visible: =false
+        Width: =280
+        X: =40
+        Y: =40
+        ZIndex: =2
+

@@ -1,0 +1,263 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Profile - Edit:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Profile Edit Background:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =fxTheme.Header.BGColor
+            Width: =Parent.Width
+      - Profile Edit Confirm Button:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.Check
+            OnSelect: "=If(Len('Profile Edit Phone Number Input'.Text) = 0, \n    \n    Patch(Users, LookUp(Users, 'Email Address' = User().Email),{'Full Name': 'Profile Edit Full Name Input'.Text, 'Profile Picture': 'Profile Edit Profile Picture Input'.Image, 'About Me': 'Profile Edit About Me Input'.Text}),\n\n    Patch(Users, LookUp(Users, 'Email Address' = User().Email),{'Full Name': 'Profile Edit Full Name Input'.Text, 'Phone Number': 'Profile Edit Phone Number Input'.Text, 'Profile Picture': 'Profile Edit Profile Picture Input'.Image, 'About Me': 'Profile Edit About Me Input'.Text}));\n\nNavigate(Profile, ScreenTransition.Cover)"
+            Width: =fxTheme.Header.IconSize
+            X: =Parent.Width - 80
+            Y: =('Profile Edit Background'.Height - Self.Height)/2
+      - Profile Edit Label:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Font: =Font.Lato
+            Size: =27
+            Text: ="Edit"
+            Width: =84
+            X: =(Parent.Width - Self.Width)/2
+            Y: =15
+      - Profile Edit Exit Button:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.Cancel
+            OnSelect: =Navigate(Profile, ScreenTransition.Cover)
+            Width: =fxTheme.Header.IconSize
+            X: =32
+            Y: =('Profile Edit Background'.Height - Self.Height)/2
+      - Profile Edit Container:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =1036
+            Width: =640
+            Y: =100
+          Children:
+            - Profile Edit Phone Number Input Format:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: |-
+                    ="(###) ###-####"
+                  Font: =Font.Lato
+                  HoverBorderColor: =RGBA(0, 18, 107, 1)
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  Visible: =false
+                  X: =40
+                  Y: =243
+            - Profile Edit Phone Number Input Slider:
+                Control: Classic/Slider@2.1.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: =Len('Profile Edit Phone Number Input'.Text)
+                  OnChange: |-
+                    =Set(
+                        varPhoneNumber,
+                        With(
+                            {
+                                // extracts all numbers from the phone number field
+                                varTextNumbersOnly: Concat(
+                                    MatchAll(
+                                        'Profile Edit Phone Number Input'.Text,
+                                        Match.Digit
+                                    ),
+                                    FullMatch
+                                ),
+                                // builds a table with phone number format at every position
+                                varPhoneNumberFormat: With(
+                                    {varTextPhoneNumberFormat: 'Profile Edit Phone Number Input Format'.Text},
+                                    With(
+                                        {
+                                            varTablePhoneNumberFormat: ForAll(
+                                                Sequence(Len(varTextPhoneNumberFormat)),
+                                                With(
+                                                    {
+                                                        varNumberCurrentLength: Left(
+                                                            varTextPhoneNumberFormat,
+                                                            Value
+                                                        )
+                                                    },
+                                                    {
+                                                        NumberFormat: varNumberCurrentLength,
+                                                        CountNumbers: CountRows(
+                                                            MatchAll(
+                                                                varNumberCurrentLength,
+                                                                "#"
+                                                            )
+                                                        )
+                                                    }
+                                                )
+                                            )
+                                        },
+                                        ForAll(
+                                            Sequence(
+                                                Max(
+                                                    varTablePhoneNumberFormat,
+                                                    CountNumbers
+                                                )
+                                            ),
+                                            LookUp(
+                                                varTablePhoneNumberFormat,
+                                                CountNumbers = Value
+                                            )
+                                        )
+                                    )
+                                )
+                            },
+                            Text(
+                                Value(varTextNumbersOnly),
+                                LookUp(
+                                    varPhoneNumberFormat,
+                                    CountNumbers = Len(varTextNumbersOnly),
+                                    NumberFormat
+                                )
+                            )
+                        )
+                    );
+                    Reset('Profile Edit Phone Number Input');
+                  ValueFill: =RGBA(0, 18, 107, 1)
+                  Visible: =false
+                  X: =40
+                  Y: =250
+            - Profile Edit Full Name Label:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Semibold
+                  Text: |-
+                    ="Full Name
+                    "
+                  X: =40
+                  Y: =40
+            - Profile Edit Full Name Input:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: =User().FullName
+                  DisplayMode: =DisplayMode.View
+                  Font: =Font.Lato
+                  HoverBorderColor: =RGBA(0, 18, 107, 1)
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  X: =40
+                  Y: =98
+            - Profile Edit Phone Number Label:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Semibold
+                  Text: |-
+                    ="Phone Number
+                    "
+                  X: =40
+                  Y: =181
+            - Profile Edit Profile Picture Label:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Semibold
+                  Text: |-
+                    ="Profile Picture
+                    "
+                  X: =40
+                  Y: =333
+            - Profile Edit Profile Picture Input:
+                Control: Image@2.2.3
+                Group: AddMediaWithImage2
+                Properties:
+                  AccessibleLabel: =
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  BorderThickness: =1
+                  Height: =198
+                  Image: =If(IsBlank(AddMediaButton2.Media), LookUp(Users, 'Email Address' = User().Email, 'Profile Picture'), AddMediaButton2.Media)
+                  ImagePosition: =ImagePosition.Fill
+                  Width: =268
+                  X: =40
+                  Y: =393
+            - AddMediaButton2:
+                Control: AddMedia@2.2.1
+                Group: AddMediaWithImage2
+                Properties:
+                  AccessibleLabel: =
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  BorderThickness: =1
+                  ChangePictureText: =
+                  Height: =198
+                  Size: =25
+                  Text: =""
+                  Width: =268
+                  X: =40
+                  Y: =393
+            - Profile Edit Picture Change Icon:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Fill: =RGBA(0, 0, 0, 1)
+                  Height: =35
+                  Icon: =Icon.Camera
+                  Width: =35
+                  X: =285
+                  Y: =575
+            - Profile Edit About Me Label:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Semibold
+                  Text: |-
+                    ="About Me
+                    "
+                  X: =40
+                  Y: =631
+            - Profile Edit About Me Input:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: =LookUp(Users, 'Email Address' = User().Email, 'About Me')
+                  Font: =Font.Lato
+                  Height: =178
+                  HoverBorderColor: =RGBA(0, 18, 107, 1)
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  Mode: =TextMode.MultiLine
+                  X: =40
+                  Y: =701
+            - Profile Edit Phone Number Input:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: =LookUp(Users, 'Email Address' =  User().Email, 'Phone Number')
+                  Font: =Font.Lato
+                  HoverBorderColor: =RGBA(0, 18, 107, 1)
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  MaxLength: =Len('Profile Edit Phone Number Input Format'.Text)
+                  X: =40
+                  Y: =240

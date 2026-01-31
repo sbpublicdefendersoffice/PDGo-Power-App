@@ -1,0 +1,967 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Facility Request - Admin - View Requests:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Request_List:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =1044
+            Items: |-
+              =Sort(
+                  Sort(
+                      Sort(
+                          If(
+                              Toggle1_1.Value,
+                              Ungroup(
+                                  Table(
+                                      {
+                                          MyTables: ForAll(
+                                              GroupBy(
+                                                  AddColumns(
+                                                      Filter(
+                                                          Search(
+                                                              'Facility Request',
+                                                              'AdminViewRequests-SearchInput'.Text,
+                                                              'Request Title'
+                                                          ),
+                                                          Priority.Value = ComboBox1.Selected.Value || IsBlank(ComboBox1.Selected.Value),
+                                                          If(
+                                                              IsBlank(ComboBox1_1.Selected.Value),
+                                                              Status.Value = "Opened" || Status.Value = "In Progress",
+                                                              Status.Value = ComboBox1_1.Selected.Value || IsBlank(ComboBox1_1.Selected.Value)
+                                                          )
+                                                      ),
+                                                      CategoryValue,
+                                                      Category
+                                                  ),
+                                                  CategoryValue,
+                                                  CategoryValueGroupBy
+                                              ) As CategoryGroup,
+                                  //First(ThisRecord.CategoryValueGroupBy)
+                                              If(
+                                                  Not(IsBlank(CategoryGroup.CategoryValue)),
+                                                  First(CategoryGroup.CategoryValueGroupBy)
+                                              )
+                                          )
+                                      },
+                                      {
+                                          MyTables: ForAll(
+                                              Filter(
+                                                  Search(
+                                                      'Facility Request',
+                                                      'AdminViewRequests-SearchInput'.Text,
+                                                      'Request Title'
+                                                  ),
+                                                  Priority.Value = ComboBox1.Selected.Value || IsBlank(ComboBox1.Selected.Value),
+                                                  If(
+                                                      IsBlank(ComboBox1_1.Selected.Value),
+                                                      Status.Value = "Opened" || Status.Value = "In Progress",
+                                                      Status.Value = ComboBox1_1.Selected.Value || IsBlank(ComboBox1_1.Selected.Value)
+                                                  )
+                                              ),
+                                              If(
+                                                  IsBlank(Category),
+                                                  ThisRecord
+                                              )
+                                          )
+                                      }
+                                  ),
+                                  MyTables
+                              ),
+                              Filter(
+                                  Search(
+                                      'Facility Request',
+                                      'AdminViewRequests-SearchInput'.Text,
+                                      'Request Title'
+                                  ),
+                                  Priority.Value = ComboBox1.Selected.Value || IsBlank(ComboBox1.Selected.Value),
+                                  If(
+                                      IsBlank(ComboBox1_1.Selected.Value),
+                                      Status.Value = "Opened" || Status.Value = "In Progress",
+                                      Status.Value = ComboBox1_1.Selected.Value || IsBlank(ComboBox1_1.Selected.Value)
+                                  )
+                              )
+                          ),
+                          Date,
+                          SortOrder.Descending
+                      ),
+                      Status.Value,
+                      SortOrder.Ascending
+                  ),
+                  Priority.Value,
+                  SortOrder.Descending
+              )
+            TemplateSize: =259
+            Visible: =false
+            Y: =92
+          Children:
+            - RequestListItem-Title:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =56
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =18
+                  Text: |-
+                    =Concatenate("Title: ", ThisItem.'Request Title')
+                  Width: =394
+                  X: =160
+                  Y: =138
+            - RequestListItem-Status:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(56, 96, 178, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =74
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =16
+                  Text: =ThisItem.Status.Value
+                  Width: =173
+                  X: =381
+                  Y: =92
+            - RequestListItem-Priority:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =35
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =16
+                  Text: =ThisItem.Priority.Value
+                  Width: =87
+                  X: =276
+                  Y: =68
+            - Icon4_3:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =37
+                  Icon: =Icon.NextArrow
+                  Width: =49
+                  X: =554
+                  Y: =111
+            - RequestListItem-DateYear:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =42
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =18
+                  Text: =Text(DateTimeValue(ThisItem.Date), "yyyy")
+                  Width: =80
+                  X: =36
+                  Y: =138
+            - RequestListItem-DateMonth:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =42
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =22
+                  Text: =Text(DateTimeValue(ThisItem.Date), "mmm")
+                  Width: =80
+                  X: =36
+                  Y: =108
+            - RequestListItem-DateDayNum:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =47
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =18
+                  Text: =Text(DateTimeValue(ThisItem.Date), "dd")
+                  Width: =52
+                  X: =50
+                  Y: =78
+            - RequestListItem-ID:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(130, 141, 158, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =50
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =18
+                  Text: |-
+                    =Concatenate("ID: ", ThisItem.ID)
+                  Width: =114
+                  X: =160
+                  Y: =61
+            - RequestListItem-RequesterName:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =50
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =20
+                  Text: =ThisItem.'Requester Name'
+                  Width: =291
+                  X: =160
+                  Y: =100
+            - RequestListItem-CategoryName:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Right
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =56
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =10
+                  PaddingTop: =0
+                  Size: =18
+                  Text: =If(IsBlank(ThisItem.Category), "N/A", ThisItem.Category)
+                  Width: =394
+                  X: =233
+                  Y: =189
+            - RequestListItem-HoverEffect:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  BorderThickness: =1
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Height: =231
+                  HoverFill: =RGBA(0, 0, 0, 0.1)
+                  OnSelect: |-
+                    =Set(_SelectedRequest, ThisItem);
+                    Set(_VisitedManageRequestCategory, true);
+                    Navigate('Facility Request - Admin - Manage Request', ScreenTransition.Cover)
+                  Width: =615
+                  X: =12
+                  Y: =14
+      - ViewRequests-FilterContainer:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(56, 96, 178, 1)
+            Height: =510
+            Visible: =//_ViewRequestsFilterVisibility
+            Width: =640
+            Y: =128
+          Children:
+            - ComboBox1:
+                Control: Classic/ComboBox@2.4.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  ChevronBackground: =RGBA(56, 96, 178, 1)
+                  ChevronFill: =RGBA(255, 255, 255, 1)
+                  ChevronHoverBackground: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                  DisplayFields: =["Value"]
+                  Font: =Font.'Open Sans'
+                  Height: =60
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  IsSearchable: =false
+                  Items: =Choices('Facility Request'.Priority)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(0, 18, 107, 1)
+                  SearchFields: =["Value"]
+                  SelectMultiple: =false
+                  SelectionColor: =RGBA(255, 255, 255, 1)
+                  SelectionFill: =RGBA(56, 96, 178, 1)
+                  Width: =427
+                  X: =162
+                  Y: =150
+            - AdminViewRequests-SearchInput:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: =
+                  Font: =Font.'Open Sans'
+                  Height: =61
+                  HintText: ="Search"
+                  HoverBorderColor: =RGBA(0, 18, 107, 1)
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  Width: =490
+                  X: =99
+                  Y: =44
+            - Icon2_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Height: =48
+                  Icon: =Icon.Search
+                  Width: =39
+                  X: =40
+                  Y: =45
+            - Label4_2:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Semibold
+                  Height: =60
+                  Text: ="Priority"
+                  Width: =120
+                  X: =29
+                  Y: =150
+            - ComboBox1_1:
+                Control: Classic/ComboBox@2.4.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  ChevronBackground: =RGBA(56, 96, 178, 1)
+                  ChevronFill: =RGBA(255, 255, 255, 1)
+                  ChevronHoverBackground: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                  DisplayFields: =["Value"]
+                  Font: =Font.'Open Sans'
+                  Height: =60
+                  HoverFill: =RGBA(186, 202, 226, 1)
+                  IsSearchable: =false
+                  Items: =Choices('Facility Request'.Status)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(0, 18, 107, 1)
+                  SearchFields: =["Value"]
+                  SelectMultiple: =false
+                  SelectionColor: =RGBA(255, 255, 255, 1)
+                  SelectionFill: =RGBA(56, 96, 178, 1)
+                  Width: =427
+                  X: =162
+                  Y: =245
+            - Label4_5:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Semibold
+                  Height: =60
+                  Text: ="Status"
+                  Width: =120
+                  X: =29
+                  Y: =245
+            - Button2_1:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =56
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: |-
+                    =Reset('AdminViewRequests-SearchInput');Reset(ComboBox1);Reset(ComboBox1_1);
+                    Set(_ShowOnePerCategory, false);
+                    Reset(Toggle1_1)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  Text: ="Reset"
+                  Width: =146
+                  X: =240
+                  Y: =423
+            - Label4_13:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Semibold
+                  Height: =58
+                  Text: ="Show One Per Category"
+                  Width: =357
+                  X: =29
+                  Y: =334
+            - Toggle1_1:
+                Control: Classic/Toggle@2.1.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  FalseFill: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  HandleFill: =RGBA(186, 202, 226, 1)
+                  OnCheck: =Set(_ShowOnePerCategory, true)
+                  OnUncheck: =Set(_ShowOnePerCategory, false)
+                  TrueFill: =RGBA(56, 96, 178, 1)
+                  X: =435
+                  Y: =339
+      - Container1_2:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - Container4_8:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(0, 18, 107, 1)
+                  FillPortions: =0
+                  Height: =92
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  Visible: =Parent.Width
+                  Width: =Parent.Width
+                Children:
+                  - Container5_1:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =Parent.Height
+                        Width: =Parent.Width
+                      Children:
+                        - Icon5_7:
+                            Control: Classic/Icon@2.5.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Height: =40
+                              Icon: =Icon.ArrowLeft
+                              OnSelect: =Navigate('Facility Request - Home', ScreenTransition.UnCoverRight)
+                              Width: =40
+                              X: =40
+                              Y: =Parent.Height / 2 - 20
+                        - Label9_3:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              Size: =26
+                              Text: ="Facility Requests"
+                              Width: =285
+                              X: =(Parent.Width - Self.Width)/2
+                              Y: =8
+                        - Icon1_2:
+                            Control: Classic/Icon@2.5.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Height: =40
+                              Icon: =Icon.Filter
+                              OnSelect: =If(_ViewRequestsFilterVisibility = true, Set(_ViewRequestsFilterVisibility, false), Set(_ViewRequestsFilterVisibility, true))
+                              Width: =40
+                              X: =Parent.Width - Self.Width - 24
+                              Y: =Parent.Height / 2 - 20
+            - ViewRequests-FilterContainer_1:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(0, 18, 107, 1)
+                  Height: =510
+                  Visible: |
+                    =_ViewRequestsFilterVisibility
+                  Width: =Parent.Width
+                Children:
+                  - ComboBox1_2:
+                      Control: Classic/ComboBox@2.4.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        ChevronBackground: =RGBA(56, 96, 178, 1)
+                        ChevronFill: =RGBA(255, 255, 255, 1)
+                        ChevronHoverBackground: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                        DisplayFields: =["Value"]
+                        Font: =Font.'Open Sans'
+                        Height: =60
+                        HoverFill: =RGBA(186, 202, 226, 1)
+                        IsSearchable: =false
+                        Items: =Choices('Facility Request'.Priority)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 18, 107, 1)
+                        SearchFields: =["Value"]
+                        SelectMultiple: =false
+                        SelectionColor: =RGBA(255, 255, 255, 1)
+                        SelectionFill: =RGBA(56, 96, 178, 1)
+                        Width: =427
+                        X: =(Parent.Width -Self.Width)/2 + 56
+                        Y: =(Parent.Height -Self.Height)/2 - 65
+                  - AdminViewRequests-SearchInput_1:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Default: =
+                        Font: =Font.'Open Sans'
+                        Height: =61
+                        HintText: ="Search"
+                        HoverBorderColor: =RGBA(0, 18, 107, 1)
+                        HoverFill: =RGBA(186, 202, 226, 1)
+                        Width: =490
+                        X: =(Parent.Width - Self.Width)/2 + 24
+                        Y: =(Parent.Height - Self.Height)/2 - 180
+                  - Icon2_5:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =48
+                        Icon: =Icon.Search
+                        Width: =39
+                        X: =(Parent.Width - Self.Width)/2 - 260
+                        Y: =(Parent.Height - Self.Height)/2 - 186
+                  - Label4_14:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =60
+                        Text: ="Priority"
+                        Width: =120
+                        X: =(Parent.Width - Self.Width)/2 - 231
+                        Y: =(Parent.Height - Self.Height)/2 - 75
+                  - ComboBox1_3:
+                      Control: Classic/ComboBox@2.4.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        ChevronBackground: =RGBA(56, 96, 178, 1)
+                        ChevronFill: =RGBA(255, 255, 255, 1)
+                        ChevronHoverBackground: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                        DisplayFields: =["Value"]
+                        Font: =Font.'Open Sans'
+                        Height: =60
+                        HoverFill: =RGBA(186, 202, 226, 1)
+                        IsSearchable: =false
+                        Items: =Choices('Facility Request'.Status)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 18, 107, 1)
+                        SearchFields: =["Value"]
+                        SelectMultiple: =false
+                        SelectionColor: =RGBA(255, 255, 255, 1)
+                        SelectionFill: =RGBA(56, 96, 178, 1)
+                        Width: =427
+                        X: =(Parent.Width - Self.Width)/2 + 55
+                        Y: =(Parent.Height - Self.Height)/2 + 20
+                  - Label4_15:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =60
+                        Text: ="Status"
+                        Width: =120
+                        X: =(Parent.Width - Self.Width)/2 - 231
+                        Y: =(Parent.Height - Self.Height)/2 +20
+                  - Button2_2:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Font: =Font.'Open Sans'
+                        Height: =56
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: |-
+                          =Reset('AdminViewRequests-SearchInput_1');Reset(ComboBox1_2);Reset(ComboBox1_3);
+                          Set(_ShowOnePerCategory, false);
+                          Reset(Toggle1_2)
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Text: ="Reset"
+                        Width: =146
+                        X: '=(Parent.Width - Self.Width)/2 - 7 '
+                        Y: =(Parent.Height - Self.Height)/2 + 196
+                  - Label4_16:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =58
+                        Text: ="Show One Per Category"
+                        Width: =357
+                        X: =(Parent.Width - Self.Width)/2 - 112.5
+                        Y: =(Parent.Height - Self.Height)/2 + 108
+                  - Toggle1_2:
+                      Control: Classic/Toggle@2.1.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        FalseFill: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        HandleFill: =RGBA(186, 202, 226, 1)
+                        OnCheck: =Set(_ShowOnePerCategory, true)
+                        OnUncheck: =Set(_ShowOnePerCategory, false)
+                        TrueFill: =RGBA(56, 96, 178, 1)
+                        X: =(Parent.Width - Self.Width)/2 + 192
+                        Y: =(Parent.Height - Self.Height)/2 + 108.5
+            - Container6_1:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  Visible: =Parent.Width
+                  Width: =Parent.Width
+                Children:
+                  - Request_List_1:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =Parent.Height
+                        Items: |-
+                          =Sort(
+                              Sort(
+                                  Sort(
+                                      If(
+                                          Toggle1_2.Value,
+                                          Ungroup(
+                                              Table(
+                                                  {
+                                                      MyTables: ForAll(
+                                                          GroupBy(
+                                                              AddColumns(
+                                                                  Filter(
+                                                                      Search(
+                                                                          'Facility Request',
+                                                                          'AdminViewRequests-SearchInput_1'.Text,
+                                                                          'Request Title'
+                                                                      ),
+                                                                      Priority.Value = ComboBox1_2.Selected.Value || IsBlank(ComboBox1_2.Selected.Value),
+                                                                      If(
+                                                                          IsBlank(ComboBox1_3.Selected.Value),
+                                                                          Status.Value = "Opened" || Status.Value = "In Progress",
+                                                                          Status.Value = ComboBox1_3.Selected.Value || IsBlank(ComboBox1_3.Selected.Value)
+                                                                      )
+                                                                  ),
+                                                                  CategoryValue,
+                                                                  Category
+                                                              ),
+                                                              CategoryValue,
+                                                              CategoryValueGroupBy
+                                                          ) As CategoryGroup,
+                                              //First(ThisRecord.CategoryValueGroupBy)
+                                                          If(
+                                                              Not(IsBlank(CategoryGroup.CategoryValue)),
+                                                              First(CategoryGroup.CategoryValueGroupBy)
+                                                          )
+                                                      )
+                                                  },
+                                                  {
+                                                      MyTables: ForAll(
+                                                          Filter(
+                                                              Search(
+                                                                  'Facility Request',
+                                                                  'AdminViewRequests-SearchInput_1'.Text,
+                                                                  'Request Title'
+                                                              ),
+                                                              Priority.Value = ComboBox1_2.Selected.Value || IsBlank(ComboBox1_2.Selected.Value),
+                                                              If(
+                                                                  IsBlank(ComboBox1_3.Selected.Value),
+                                                                  Status.Value = "Opened" || Status.Value = "In Progress",
+                                                                  Status.Value = ComboBox1_3.Selected.Value || IsBlank(ComboBox1_3.Selected.Value)
+                                                              )
+                                                          ),
+                                                          If(
+                                                              IsBlank(Category),
+                                                              ThisRecord
+                                                          )
+                                                      )
+                                                  }
+                                              ),
+                                              MyTables
+                                          ),
+                                          Filter(
+                                              Search(
+                                                  'Facility Request',
+                                                  'AdminViewRequests-SearchInput_1'.Text,
+                                                  'Request Title'
+                                              ),
+                                              Priority.Value = ComboBox1_2.Selected.Value || IsBlank(ComboBox1_2.Selected.Value),
+                                              If(
+                                                  IsBlank(ComboBox1_3.Selected.Value),
+                                                  Status.Value = "Opened" || Status.Value = "In Progress",
+                                                  Status.Value = ComboBox1_3.Selected.Value || IsBlank(ComboBox1_3.Selected.Value)
+                                              )
+                                          )
+                                      ),
+                                      Date,
+                                      SortOrder.Descending
+                                  ),
+                                  Status.Value,
+                                  SortOrder.Ascending
+                              ),
+                              Priority.Value,
+                              SortOrder.Descending
+                          )
+                        TemplateSize: =Parent.Height/4
+                        Width: =Parent.Width
+                      Children:
+                        - RequestListItem-Priority_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =35
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =16
+                              Text: =ThisItem.Priority.Value
+                              Width: =87
+                              X: ='RequestListItem-ID_4'.Width + 'RequestListItem-ID_4'.X
+                              Y: ='RequestListItem-ID_4'.Y + 10
+                        - RequestListItem-CategoryName_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Right
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =56
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =10
+                              PaddingTop: =0
+                              Size: =18
+                              Text: =If(IsBlank(ThisItem.Category), "N/A", ThisItem.Category)
+                              Width: =394
+                              X: =Parent.TemplateWidth - Self.Width - 10
+                              Y: |
+                                =Parent.TemplateHeight - Self.Height - 10
+                        - RequestListItem-ID_4:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(130, 141, 158, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =50
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =18
+                              Text: |-
+                                =Concatenate("ID: ", ThisItem.ID)
+                              Width: =114
+                              X: =(Parent.TemplateWidth - Self.Width)/2  - 103
+                              Y: =(Parent.TemplateHeight - Self.Height)/2  - 45
+                        - RequestListItem-RequesterName_3:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =50
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =20
+                              Text: =ThisItem.'Requester Name'
+                              Width: =291
+                              X: =(Parent.TemplateWidth - Self.Width)/2  - 14.5
+                              Y: '=(Parent.TemplateHeight - Self.Height)/2 -  5 '
+                        - RequestListItem-Status_3:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =74
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =16
+                              Text: =ThisItem.Status.Value
+                              Width: =173
+                              X: ='RequestListItem-RequesterName_3'.X + 'RequestListItem-RequesterName_3'.Width - 40
+                              Y: =(Parent.TemplateHeight - Self.Height)/2 - 1
+                        - Icon4_4:
+                            Control: Classic/Icon@2.5.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(0, 18, 107, 1)
+                              Height: =37
+                              Icon: =Icon.NextArrow
+                              Width: =49
+                              X: =Parent.TemplateWidth - Self.Width - 37
+                              Y: '=(Parent.TemplateHeight - Self.Height)/2 '
+                        - RequestListItem-DateDayNum_4:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =47
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =18
+                              Text: =Text(DateTimeValue(ThisItem.Date), "dd")
+                              Width: =52
+                              X: =50
+                              Y: =(Parent.TemplateHeight - Self.Height)/2 - 29
+                        - RequestListItem-DateMonth_4:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =42
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =22
+                              Text: =Text(DateTimeValue(ThisItem.Date), "mmm")
+                              Width: =80
+                              X: =36
+                              Y: =(Parent.TemplateHeight - Self.Height)/2 - 1
+                        - RequestListItem-DateYear_4:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =42
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =18
+                              Text: =Text(DateTimeValue(ThisItem.Date), "yyyy")
+                              Width: =80
+                              X: =36
+                              Y: =(Parent.TemplateHeight - Self.Height)/2 + 29
+                        - RequestListItem-Title_5:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =56
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =18
+                              Text: |-
+                                =Concatenate("Title: ", ThisItem.'Request Title')
+                              Width: =394
+                              X: =(Parent.TemplateWidth - Self.Width)/2  + 37
+                              Y: =(Parent.TemplateHeight - Self.Height)/2 + 35
+                        - RequestListItem-HoverEffect_4:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              BorderThickness: =1
+                              Fill: =RGBA(0, 0, 0, 0)
+                              Height: =Parent.TemplateHeight - 30
+                              HoverFill: =RGBA(0, 0, 0, 0.1)
+                              OnSelect: |-
+                                =Set(_SelectedRequest, ThisItem);
+                                Set(_VisitedManageRequestCategory, true);
+                                Navigate('Facility Request - Admin - Manage Request', ScreenTransition.Cover)
+                              Width: =Parent.TemplateWidth - 25
+                              X: =(Parent.TemplateWidth - Self.Width)/2
+                              Y: =(Parent.TemplateHeight - Self.Height)/2

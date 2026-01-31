@@ -1,0 +1,121 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Upload Calendar files:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Background Color_11:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderStyle: =BorderStyle.None
+            Fill: =RGBA(25, 53, 110, 1)
+            Height: =111
+            Width: =Parent.Width
+      - Container15_3:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - Container14_7:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  Fill: =fxTheme.Header.BGColor
+                  FillPortions: =0
+                  Height: ='Background Color_11'.Height
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  Width: ='Background Color_11'.Width
+                  X: =
+                  Y: =
+                Children:
+                  - Icon11_7:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =fxTheme.Header.TextColor
+                        Height: =fxTheme.Header.IconSize
+                        Icon: =Icon.ArrowLeft
+                        OnSelect: =Navigate('Home Screen', ScreenTransition.CoverRight)
+                        Width: =fxTheme.Header.IconSize
+                        X: =40
+                        Y: =40
+                  - Label15_8:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =fxTheme.Header.TextColor
+                        Font: =Font.Lato
+                        Size: =25
+                        Text: ="Upload a Calendar file"
+                        Width: =487
+                        X: =115
+                        Y: =15
+            - Container47:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  LayoutMinHeight: =Parent.Height-Container14_7.Height
+                  LayoutMinWidth: =Parent.Width
+                Children:
+                  - ICS Attachment:
+                      Control: Attachments@2.3.0
+                      Properties:
+                        BorderColor: =
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Open Sans'
+                        HoverFill: =RGBA(186, 202, 226, 1)
+                        ItemColor: =RGBA(255, 255, 255, 1)
+                        ItemFill: =RGBA(56, 96, 178, 1)
+                        ItemHoverFill: =RGBA(186, 202, 226, 1)
+                        Items: =Blank()
+                        MaxAttachments: =1
+                        PaddingBottom: =5
+                        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 18, 107, 1)
+                        Tooltip: =
+                        Width: =Parent.Width - 60
+                        X: =27
+                        Y: =21
+                  - Button25:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(56, 96, 178, 1)
+                        Font: =Font.'Open Sans'
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: |-
+                          ='PowerAppV2->Createfile'.Run( 
+                              {
+                                  contentBytes: First('ICS Attachment'.Attachments).Value,
+                                  name: First('ICS Attachment'.Attachments).Name
+                              })
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Text: ="Upload File"
+                        X: =159
+                        Y: =615

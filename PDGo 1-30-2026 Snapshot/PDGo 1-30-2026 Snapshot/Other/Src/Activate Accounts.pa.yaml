@@ -1,0 +1,152 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Activate Accounts:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: =UpdateContext({AARecord:Blank()});
+    Children:
+      - Container2_1:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+            Y: |
+              =0
+          Children:
+            - Container16_2:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  Fill: =RGBA(0, 18, 107, 1)
+                  FillPortions: =0
+                Children:
+                  - Label4_17:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Lato Black'
+                        FontWeight: =FontWeight.Bold
+                        Height: =111
+                        Size: =48
+                        Text: ="Activate Accounts"
+                        Width: =Parent.Width
+                        Y: =(Parent.Height - Self.Height) / 2
+                  - Icon3_2:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Icon: =Icon.Person
+                        OnSelect: =Navigate(Profile, ScreenTransition.Cover);
+                        X: =20
+                        Y: =20
+                  - Icon5_2:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =50
+                        Icon: =Icon.Settings
+                        OnSelect: =Navigate('Profile - Settings', ScreenTransition.Cover)
+                        Width: =50
+                        X: =Parent.Width - Self.Width - 20
+                        Y: =20
+            - AAMainContainer:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Children:
+                  - AASelectUser:
+                      Control: Classic/DropDown@2.3.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        ChevronBackground: =RGBA(56, 96, 178, 1)
+                        ChevronFill: =RGBA(255, 255, 255, 1)
+                        ChevronHoverBackground: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        HoverFill: =RGBA(186, 202, 226, 1)
+                        Items: =Filter(Users, Active = false)
+                        Items.Value: =field_1
+                        OnSelect: =UpdateContext({AARecord:Self.Selected})
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 18, 107, 1)
+                        SelectionColor: =RGBA(255, 255, 255, 1)
+                        SelectionFill: =RGBA(56, 96, 178, 1)
+                        X: =40
+                        Y: =40
+                  - Label4:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =AARecord.'Full Name'
+                        X: =40
+                        Y: =132
+                  - Label4_18:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =AARecord.'Email Address'
+                        X: =Label4.X
+                        Y: =202
+                  - Label4_19:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =AARecord.'Phone Number'
+                        X: =Label4.X
+                        Y: =272
+                  - Label4_20:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =AARecord.Team.Value
+                        X: =Label4.X
+                        Y: =370
+                  - Label4_21:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =AARecord.UserType.Value
+                        X: =Label4.X
+                        Y: =452
+                  - Label4_22:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =IfError(Office365Users.UserProfileV2(AARecord.'Email Address').jobTitle,"None",If(IsBlank(Office365Users.UserProfileV2(AARecord.'Email Address').jobTitle),"None",Office365Users.UserProfileV2(AARecord.'Email Address').jobTitle))
+                        X: =Label4.X
+                        Y: =536
+                  - Button12:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(56, 96, 178, 1)
+                        Font: =Font.'Open Sans'
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: =AddAccountstoSiteGroupsandActivate.Run("mperez@countyofsb.org")
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        X: =159
+                        Y: =702

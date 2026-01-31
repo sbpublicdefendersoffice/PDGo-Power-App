@@ -1,0 +1,128 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Profile - Supervisor:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Background Color_4:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderStyle: =BorderStyle.None
+            Fill: =fxTheme.Header.BGColor
+            Height: =296
+            Width: =Parent.Width
+      - Back Button_5:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Navigate(Profile, ScreenTransition.Cover)
+            Width: =fxTheme.Header.IconSize
+            X: =23
+            Y: =34
+      - User Name_1:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Font: =Font.Lato
+            Height: =51
+            Size: =26
+            Text: |
+              =LookUp(Users, 'Full Name' = _mySupervisor.'Full Name', 'Full Name')
+            Width: =Parent.Width - 2*Self.X
+            X: =30
+            Y: =201
+      - User Profile Picture_1:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =145
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: ='User Profile Picture_1'.Height
+            RadiusBottomRight: ='User Profile Picture_1'.Height
+            RadiusTopLeft: ='User Profile Picture_1'.Height
+            RadiusTopRight: ='User Profile Picture_1'.Height
+            Width: =145
+            X: =(Parent.Width - Self.Width)/2
+            Y: =56
+      - About Container_1:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =716
+            Width: =Min(Parent.Width, 1500)
+            X: =(Parent.Width - Self.Width)/2
+            Y: =296
+          Children:
+            - About Me Label_1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  Height: =44
+                  Text: ="About Me"
+                  Width: =148
+                  X: =36
+                  Y: =66
+            - About Me Description_1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =188
+                  Overflow: =Overflow.Scroll
+                  Size: =18
+                  Text: =LookUp(Users, 'Full Name' = _mySupervisor.'Full Name', 'About Me')
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.Width - 2*Self.X
+                  X: =36
+                  Y: =110
+            - Label6_1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Text: =LookUp(Users, 'Full Name' = _mySupervisor.'Full Name', 'Phone Number')
+                  Width: =448
+                  X: =133
+                  Y: =331
+            - Label7_1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Text: =LookUp(Users, 'Full Name' = _mySupervisor.'Full Name', 'Email Address')
+                  Width: =449
+                  X: =133
+                  Y: =434
+            - Icon8_1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =50
+                  Icon: =Icon.Phone
+                  Width: =50
+                  X: =56
+                  Y: =341
+            - Icon9_1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Icon: =Icon.Mail
+                  X: =49
+                  Y: =440

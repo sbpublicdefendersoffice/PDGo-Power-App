@@ -1,0 +1,90 @@
+Reservations As screen:
+
+    Reservations_Main_Container As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height-Reservations_Header_Container.Height-15
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        Width: =Parent.Width
+        Y: =Reservations_Header_Container.Height+15
+        ZIndex: =1
+
+        Gallery10_1 As gallery.variableTemplateHeightGallery:
+            DelayItemLoading: =true
+            Height: =896
+            Items: |-
+                =Table({Name: "Book a Room", Screen:'Reserve Room'},{Name: "View My Bookings", Screen:'My Bookings'})
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =10
+            TemplateSize: =200
+            Width: =228
+            X: =213
+            ZIndex: =3
+
+            Button22_1 As button:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =196
+                OnSelect: =Navigate(ThisItem.Screen)
+                Size: =24
+                Text: =
+                Width: =212
+                ZIndex: =4
+
+            Icon16_1 As icon.Add:
+                Icon: =Icon.Globe
+                OnSelect: =Select(Parent)
+                X: =74
+                Y: =36
+                ZIndex: =5
+
+            Image4_1 As image:
+                Height: =64
+                Image: =
+                Visible: =!IsBlank(ThisItem.ResourceIcon)
+                Width: =64
+                X: =74
+                Y: =36
+                ZIndex: =6
+
+            Label29_1 As label:
+                Align: =Align.Center
+                Height: =70
+                OnSelect: =Select(Parent)
+                Overflow: =Overflow.Scroll
+                Size: =21
+                Text: =ThisItem.Name
+                Width: =212
+                Y: =126
+                ZIndex: =7
+
+    Reservations_Header_Container As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(0, 18, 107, 1)
+        Height: =225
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        maximumHeight: =11360
+        maximumWidth: =640
+        Width: =640
+        ZIndex: =2
+
+        Icon3_6 As icon:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Back()
+            X: =21
+            Y: =33
+            ZIndex: =1
+
+        Label4_28 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Lato Black'
+            FontWeight: =FontWeight.Bold
+            Height: =111
+            Size: =64
+            Text: ="Reservations"
+            Width: =Parent.Width
+            Y: =54
+            ZIndex: =2
+

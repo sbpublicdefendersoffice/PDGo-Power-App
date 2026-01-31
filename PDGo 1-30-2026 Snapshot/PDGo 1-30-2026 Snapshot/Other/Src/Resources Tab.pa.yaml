@@ -1,0 +1,110 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Resources Tab:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Container40:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height-Container16_5.Height-15
+            Width: =Parent.Width
+            Y: =Container16_5.Height+15
+          Children:
+            - Gallery10:
+                Control: Gallery@2.15.0
+                Variant: VariableHeight
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =911
+                  Items: =Resources
+                  TemplatePadding: =
+                  TemplateSize: =196
+                  Width: =212
+                  X: =213
+                Children:
+                  - Label29:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        OnSelect: =Select(Parent)
+                        Overflow: =Overflow.Scroll
+                        Text: =ThisItem.Title
+                        Width: =212
+                        Y: =126
+                  - Icon16:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Icon: =Icon.Globe
+                        OnSelect: =Select(Parent)
+                        X: =74
+                        Y: =36
+                  - Image4:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =64
+                        Image: =
+                        Visible: =!IsBlank(ThisItem.ResourceIcon)
+                        Width: =64
+                        X: =74
+                        Y: =36
+                  - Button22:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Font: =Font.'Open Sans'
+                        Height: =196
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: =Launch(Text(ThisItem.Link))
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Text: =
+                        Width: =212
+      - Container16_5:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(0, 18, 107, 1)
+            Width: =640
+          Children:
+            - Label4_25:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Bold
+                  Height: =111
+                  Size: =64
+                  Text: ="Resources"
+                  Width: =Parent.Width
+                  Y: =54
+            - Icon3_3:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Icon: =Icon.ArrowLeft
+                  OnSelect: =Back()
+                  X: =21
+                  Y: =33

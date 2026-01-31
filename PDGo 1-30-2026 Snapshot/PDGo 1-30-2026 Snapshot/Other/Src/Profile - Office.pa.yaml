@@ -1,0 +1,189 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Profile - Office:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Office Image:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =256
+            Image: ='Courthouse and Sunken Garden'
+            ImagePosition: =ImagePosition.Fill
+            Width: =Min(Parent.Width, 1500)
+            X: =(Parent.Width - Self.Width)/2
+            Y: =111
+      - Background Color_2:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderStyle: =BorderStyle.None
+            Fill: =fxTheme.Header.BGColor
+            Height: =111
+            Width: =Parent.Width
+      - Back Button_2:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Back();
+            Width: =fxTheme.Header.IconSize
+            X: =30
+            Y: =30
+      - Profile - Office Header Text:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Font: =Font.Lato
+            Size: =26
+            Text: ="Office"
+            Width: =124
+            X: =(Parent.Width - Self.Width)/2
+            Y: =20
+      - Container14:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =Parent.Height - Self.Y
+            Width: =640
+            X: =(Parent.Width - Self.Width)/2
+            Y: =367
+          Children:
+            - Office Name_1:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Semibold
+                  PaddingLeft: =25
+                  Size: =25
+                  Text: ="SB Public Defender Main Office"
+                  Width: =640
+                  Y: =15
+            - Office Address_1:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(116, 116, 116, 1)
+                  Font: =Font.'Lato Light'
+                  Height: =51
+                  PaddingLeft: =25
+                  Text: ="1100 Anacapa Santa Barbara 93101"
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =640
+                  Y: =63
+            - Office Hours Label_1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Light'
+                  FontWeight: =FontWeight.Bold
+                  Height: =60
+                  PaddingLeft: =25
+                  Size: =20
+                  Text: ="Hours:"
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =130
+                  Y: =199
+            - Office Phone Number_1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Light'
+                  Text: ="(805) 568-3470"
+                  Width: =260
+                  X: =189
+                  Y: =107
+            - Office Phone Icon_1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =30
+                  Icon: =Icon.Phone
+                  Width: =30
+                  X: =148
+                  Y: =127
+            - Office Hours Times_2:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Light'
+                  Height: =300
+                  LineHeight: =1.4
+                  Text: |-
+                    ="Monday
+                    Tuesday
+                    Wednesday
+                    Thursday
+                    Friday
+                    Saturday
+                    Sunday"
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =170
+                  X: =130
+                  Y: =199
+            - Office Hours Times_3:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Light'
+                  Height: =300
+                  LineHeight: =1.4
+                  Text: |-
+                    ="8 AM - 5 PM
+                    8 AM - 5 PM
+                    8 AM - 5 PM
+                    8 AM - 5 PM
+                    8 AM - 5 PM
+                    Closed
+                    Closed"
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =233
+                  X: =330
+                  Y: =199
+            - PhoneOverlapLaunchButton_1:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =54
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =
+                  OnSelect: =Launch("tel://"&'Office Phone Number_1'.Text)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =
+                  PressedFill: =RGBA(0,0,0,.25)
+                  Text: =
+                  X: =130
+                  Y: =115
+      - Label26:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =2
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Text: ="Closed For Holiday"
+            Visible: =false
+            X: =40
+            Y: =204

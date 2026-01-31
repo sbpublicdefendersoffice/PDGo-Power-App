@@ -1,0 +1,230 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Facility Request - User - Manage Request:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Container41:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - Container44:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  Fill: =RGBA(0, 18, 107, 1)
+                  FillPortions: =0
+                  Height: =100
+                Children:
+                  - ManageRequest-BackArrow_1:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =40
+                        Icon: =Icon.ArrowLeft
+                        OnSelect: =Navigate('Facility Request - User - Edit Forms', ScreenTransition.UnCoverRight)
+                        Width: =40
+                        X: =40
+                        Y: =Parent.Height / 2 - 20
+                  - ManageRequestLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        Size: =26
+                        Text: ="Manage Request"
+                        Width: =309
+                        X: =Parent.Width / 2 - 145
+                        Y: =Parent.Height / 2 - 35
+            - Container45:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Children:
+                  - ManageRequest-TitleLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Title"
+                        Width: =105
+                        X: =25
+                        Y: =20
+                  - ManageRequest-RequestorLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Requestor"
+                        Width: =203
+                        X: =25
+                        Y: =110
+                  - ManageRequest-EmailLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Email"
+                        Width: =140
+                        X: =25
+                        Y: =195
+                  - ManageRequest-DateCreatedLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =85
+                        Text: ="Date Created"
+                        Width: =164
+                        X: =25
+                        Y: =280
+                  - ManageRequest-DescriptionLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Description"
+                        Width: =233
+                        X: =25
+                        Y: =530
+                  - ManageRequest-TitleText_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        PaddingLeft: =15
+                        Text: =_SelectedRequest.'Request Title'
+                        Width: =Parent.Width / 2 + 70
+                        X: =233
+                        Y: =25
+                  - ManageRequest-RequestorText_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        PaddingLeft: =15
+                        Text: =_SelectedRequest.'Requester Name'
+                        Width: =Parent.Width / 2 + 70
+                        X: =233
+                        Y: =110
+                  - ManageRequest-EmailText_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        PaddingLeft: =15
+                        Text: =_SelectedRequest.'Requester Email'
+                        Width: =Parent.Width / 2 + 70
+                        X: =233
+                        Y: =195
+                  - ManageRequest-DateCreatedText_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        PaddingLeft: =15
+                        Text: =_SelectedRequest.Date
+                        Width: =Parent.Width / 2 + 70
+                        X: =233
+                        Y: =280
+                  - ManageRequest-PriorityLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Priority"
+                        Width: =164
+                        X: =25
+                        Y: =365
+                  - ManageRequest-PriorityText_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        PaddingLeft: =15
+                        Text: =_SelectedRequest.Priority.Value
+                        Width: =Parent.Width / 2 + 70
+                        X: =233
+                        Y: =365
+                  - ManageRequest-StatusLabel_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Semibold
+                        Text: ="Status"
+                        Width: =164
+                        X: =25
+                        Y: =450
+                  - ManageRequest-StatusText_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        PaddingLeft: =15
+                        Text: =_SelectedRequest.Status.Value
+                        Width: =Parent.Width / 2 + 70
+                        X: =233
+                        Y: =450
+                  - ManageRequest-DescriptionHTML_1:
+                      Control: HtmlViewer@2.1.0
+                      Properties:
+                        DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                        Fill: =RGBA(241, 244, 249, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =Parent.Height / 4 + 40
+                        HtmlText: =_SelectedRequest.Description
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        Width: =Parent.Width - 50
+                        X: =30
+                        Y: = 600
+                  - ManageRequest-CloseReqestButton_1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(184, 0, 0, 1)
+                        Font: =Font.'Open Sans'
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: |-
+                          =Patch('Facility Request', LookUp('Facility Request', ID = _SelectedRequest.ID), {Status: {Value:"Closed"}});
+                          Navigate('Facility Request - User - Edit Forms', ScreenTransition.UnCoverRight);
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Text: ="Close Request"
+                        Visible: =If(_SelectedRequest.Status.Value = "Opened" Or _SelectedRequest.Status.Value = "In Progress", true, false)
+                        Width: =556
+                        X: =Parent.Width / 2 - 275
+                        Y: =Parent.Height - 100

@@ -1,0 +1,21 @@
+App As appinfo:
+    BackEnabled: =false
+    Formulas: |-
+        =fxTheme = {
+            Header: {
+                BGColor: RGBA(0, 16, 96, 1),
+                TextColor: Color.White,
+                IconSize: 45
+            }
+        };
+    OnStart: =
+    StartScreen: =Initialize
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

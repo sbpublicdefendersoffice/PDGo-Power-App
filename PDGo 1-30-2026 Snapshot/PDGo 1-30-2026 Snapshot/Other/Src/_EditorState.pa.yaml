@@ -1,0 +1,72 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+EditorState:
+  ScreensOrder:
+    - '------ SECTION: START ------'
+    - Initialize
+    - Home Screen
+    - Admin - Tools
+    - '------ SECTION: FACILITY ------'
+    - Facility Request - Home
+    - Facility Request - Admin - Assign Group
+    - Facility Request - Admin - Create New Group
+    - Facility Request - Admin - Edit Category
+    - Facility Request - Admin - Manage Categories
+    - Facility Request - Admin - Manage Category
+    - Facility Request - Admin - Manage Request Category
+    - Facility Request - Admin - Manage Request
+    - Facility Request - Admin - View Requests
+    - Facility Request - Submitted Successfully
+    - Facility Request - User - Edit Forms
+    - Facility Request - User - Facility Form
+    - Facility Request - User - Manage Request
+    - '------ SECTION: PROFILE ------'
+    - Profile - Calendar
+    - Profile - Edit
+    - Profile - Office
+    - Profile - Selected Team Member
+    - Profile - Settings
+    - Profile - Supervisor
+    - Profile - Team
+    - Profile
+    - '------ SECTION: TIME OFF ------'
+    - Time Off Options
+    - Time Off Request - Admin - View List Screen
+    - TO Request Date Screen
+    - TO Request Screen
+    - Open Request Screen
+    - '------ SECTION: TRAINING TRACKER ------'
+    - Training Options
+    - Training Tracker - ADMIN - Add Training
+    - Training Tracker - Attendee List
+    - Training Tracker - Check In
+    - Training Tracker - Check Out
+    - Training Tracker - Home
+    - Training Tracker - MCLE Certificate Chooser Single
+    - Training Tracker - MCLE Certificate
+    - Training Tracker - RSVP Success
+    - Training Tracker - View Training Details
+    - Training Approvals - View Training Details
+    - Training Tracker - View Trainings
+    - '------ SECTION: MISCELLANEOUS ------'
+    - Resources Tab
+    - Employee Directory
+    - Reservations
+    - Reserve Room
+    - My Bookings
+    - General Success Screen
+    - Upload Calendar files
+    - Activate Accounts
+    - Admin - Approvals
+    - Finalize Meeting
+    - Screen1
+    - Select Report
+    - Debug Screen
+    - FRUH
+    - Training Tracker - MCLE Certificate Chooser

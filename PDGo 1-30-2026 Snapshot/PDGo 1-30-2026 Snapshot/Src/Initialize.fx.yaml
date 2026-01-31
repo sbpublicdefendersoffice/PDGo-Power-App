@@ -1,0 +1,101 @@
+Initialize As screen:
+    OnVisible: |+
+        =ClearCollect(toolNav,
+        {
+            Name:"MCLE Certificate",
+            ScreenNav: 'Training Tracker - MCLE Certificate'
+        },
+        {
+            Name:"MCLE Certificate Chooser",
+            ScreenNav: 'Training Tracker - MCLE Certificate Chooser'
+        },
+        {
+            Name:"MCLE Certificate Chooser Single",
+            ScreenNav: 'Training Tracker - MCLE Certificate Chooser Single'
+        },
+        {
+            Name:"Add Training",
+            ScreenNav: 'Training Tracker - ADMIN - Add Training'
+        },
+        {
+            Name:"Manage Time Off Requests",
+            ScreenNav: 'Time Off Request - Admin - View List Screen'
+        },
+        {
+            Name:"MCLE Certificate",
+            ScreenNav: 'Training Tracker - MCLE Certificate'
+        },
+        {
+            Name:"Pending Trainings List",
+            ScreenNav:'Admin - Approvals'
+        },
+        {
+            Name:"View Facility Requests",
+            ScreenNav: 'Facility Request - Admin - View Requests'
+        },
+        {
+            Name:"Manage Facility Requests",
+            ScreenNav: 'Facility Request - Admin - Manage Request'
+        },
+        {
+            Name:"Manage Facility Request Categories",
+            ScreenNav: 'Facility Request - Admin - Manage Request Category'
+        },
+        {
+            Name:"Manage Facility Category",
+            ScreenNav: 'Facility Request - Admin - Manage Category'
+        },
+        {
+            Name:"Manage Facility Categories",
+            ScreenNav: 'Facility Request - Admin - Manage Categories'
+        },
+        {
+            Name:"Facility Request Admin Home",
+            ScreenNav: 'Facility Request - Home'
+        },
+        {
+            Name:"Edit Facility Request Category",
+            ScreenNav: 'Facility Request - Admin - Edit Category'
+        },
+        {
+            Name:"Facility Request Create New Group",
+            ScreenNav: 'Facility Request - Admin - Create New Group'
+        },
+        {
+            Name:"Facility Request Assign Group",
+            ScreenNav: 'Facility Request - Admin - Assign Group'
+        },
+        {
+            Name:"Activate Accounts",
+            ScreenNav: 'Activate Accounts'
+        }
+        );
+        
+        ClearCollect(webLinks,
+        {
+            Name: "CrimeIQ",
+            Link: "crimeiq://",
+            Role: "Attny"
+        },
+        {
+            Name: "WestLaw",
+            Link: "westlaw://",
+            Role: "Attny"
+        });
+        
+        Set(UserRecord, LookUp(Users, 'Email Address' = User().Email));
+        
+        Select(StartApp);
+        
+
+    StartApp As button:
+        Height: =70
+        OnSelect: =Navigate('Home Screen',ScreenTransition.CoverRight) 
+        Size: =24
+        Text: =
+        Visible: =false
+        Width: =280
+        X: =40
+        Y: =40
+        ZIndex: =1
+

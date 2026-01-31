@@ -1,0 +1,382 @@
+{
+  "02ceff66-c97d-4d72-8b73-146b70c0bb35": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write",
+      "providers/PowerPlatform.Governance/Operations/Delete"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1732/1.0.1732.4070/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://countyofsb.sharepoint.com/teams/PDGODemo": {
+        "dataSources": {
+          "Courses": {
+            "tableName": "2da47e59-e11e-4d90-8cd6-fa0cd40f9719"
+          },
+          "Credentials": {
+            "tableName": "17e0ddd1-7557-4ea7-ab9d-4d3c44ddc121"
+          },
+          "Facility Request": {
+            "tableName": "7c331482-43d9-4792-ae6c-0555bc332162"
+          },
+          "Facility Request Categories": {
+            "tableName": "b1bb6274-470b-40a3-824c-272f03f392c5"
+          },
+          "LimboTrainings": {
+            "tableName": "77c41055-ce11-4bdd-868f-86e980b0dc78"
+          },
+          "MCLETrainingAttendance": {
+            "tableName": "24661a39-0709-4140-b304-1290373e06f4"
+          },
+          "MCLETrainings": {
+            "tableName": "aa86d1e5-3bf9-4694-b2f5-4333e3a0858c"
+          },
+          "RequestCodes": {
+            "tableName": "bf16008a-b56b-40f6-8359-2485db2eefae"
+          },
+          "Resources": {
+            "tableName": "7656b91a-cfeb-4f4a-8c0a-62d03be28a12"
+          },
+          "Rooms_Directory": {
+            "tableName": "95ed6248-5e6a-4f03-ba06-de7849e1099d"
+          },
+          "Rooms_Reservations": {
+            "tableName": "3c9a92fe-a4d4-47c4-9025-0af2261171e4"
+          },
+          "SelfReports": {
+            "tableName": "42f58d05-d38c-419d-84aa-ed7783d533ea"
+          },
+          "Teams": {
+            "tableName": "505056c8-aea8-4841-8643-5eeb0a3b31f4"
+          },
+          "TimeOffRequestDays": {
+            "tableName": "02f084f4-af5f-4958-b724-0483a7164464"
+          },
+          "TimeOffRequests": {
+            "tableName": "52caa345-8e73-4feb-ad53-42f962109f69"
+          },
+          "Users": {
+            "tableName": "42f02f00-9538-40e2-8d8c-9bf87dd38fd8"
+          },
+          "Users-Teams": {
+            "tableName": "9e0d7441-59fa-4a47-b4a9-ebb71d43efaa"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Teams",
+      "Users-Teams",
+      "Users",
+      "RequestCodes",
+      "Facility Request",
+      "MCLETrainingAttendance",
+      "MCLETrainings",
+      "TimeOffRequestDays",
+      "TimeOffRequests",
+      "Facility Request Categories",
+      "Courses",
+      "SelfReports",
+      "Resources",
+      "Credentials",
+      "LimboTrainings",
+      "Rooms_Directory",
+      "Rooms_Reservations"
+    ],
+    "dependencies": {},
+    "dependents": [
+      "b2a7a165-5eaf-4484-9ac5-8ac3a1466a3e",
+      "36673dc6-fec5-4c8e-94a1-3e73019e4bf1",
+      "979dbf6b-d4bb-4e08-adc7-aea14446191a",
+      "4b7e8ee2-e0d5-4f85-95b9-4df622772ab2"
+    ],
+    "id": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+  },
+  "36673dc6-fec5-4c8e-94a1-3e73019e4bf1": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "02ceff66-c97d-4d72-8b73-146b70c0bb35": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowDisplayName": {
+          "value": "GetCSV"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "33c0984f-a521-4260-9494-e4a42f970810"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+        },
+        "workflowDisplayName": {
+          "value": "GetCSV"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "33c0984f-a521-4260-9494-e4a42f970810"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "PowerAppV2->Initializevariable,Getfilecontent,Compose"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+    },
+    "dependents": [],
+    "id": "36673dc6-fec5-4c8e-94a1-3e73019e4bf1"
+  },
+  "4b7e8ee2-e0d5-4f85-95b9-4df622772ab2": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "02ceff66-c97d-4d72-8b73-146b70c0bb35": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowDisplayName": {
+          "value": "Upload ICS File"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "2603c5e7-771c-4aa5-a342-12674ead1b37"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+        },
+        "workflowDisplayName": {
+          "value": "Upload ICS File"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "2603c5e7-771c-4aa5-a342-12674ead1b37"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "PowerAppV2->Createfile"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+    },
+    "dependents": [],
+    "id": "4b7e8ee2-e0d5-4f85-95b9-4df622772ab2"
+  },
+  "83df3abc-d3bc-4a76-8868-dd67561fc76d": {
+    "appActions": [
+      "CreateTeamsMeeting"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Microsoft Teams",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/releases/v1.0.1787/1.0.1787.4513/teams/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_teams",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "MicrosoftTeams"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "83df3abc-d3bc-4a76-8868-dd67561fc76d"
+  },
+  "94904251-1cb1-4cda-89a3-a0b768efe8bb": {
+    "appActions": [
+      "MyProfile",
+      "UserPhotoMetadata",
+      "UserPhoto",
+      "UserProfile",
+      "UserProfile_V2"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1767/1.0.1767.4341/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "94904251-1cb1-4cda-89a3-a0b768efe8bb"
+  },
+  "979dbf6b-d4bb-4e08-adc7-aea14446191a": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "02ceff66-c97d-4d72-8b73-146b70c0bb35": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowDisplayName": {
+          "value": "SaveReportFile"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "d3316954-0852-406a-9809-98cc31c41f2d"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+        },
+        "workflowDisplayName": {
+          "value": "SaveReportFile"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "d3316954-0852-406a-9809-98cc31c41f2d"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "SaveReportFile"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+    },
+    "dependents": [],
+    "id": "979dbf6b-d4bb-4e08-adc7-aea14446191a"
+  },
+  "a0b87287-25cd-4c05-bde7-29a7bffe1a26": {
+    "appActions": [
+      "CalendarGetTables_V2",
+      "GetEventsCalendarViewV2",
+      "GetEventsCalendarView",
+      "V2CalendarGetItem",
+      "V4CalendarPostItem",
+      "CalendarGetTables"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/releases/v1.0.1788/1.0.1788.4524/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Outlook"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "a0b87287-25cd-4c05-bde7-29a7bffe1a26"
+  },
+  "b2a7a165-5eaf-4484-9ac5-8ac3a1466a3e": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "02ceff66-c97d-4d72-8b73-146b70c0bb35": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowDisplayName": {
+          "value": "Add Accounts to Site Groups and Activate"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "82f6000e-f3d0-4610-9756-420c647e3238"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+        },
+        "workflowDisplayName": {
+          "value": "Add Accounts to Site Groups and Activate"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "82f6000e-f3d0-4610-9756-420c647e3238"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AddAccountstoSiteGroupsandActivate"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+    },
+    "dependents": [],
+    "id": "b2a7a165-5eaf-4484-9ac5-8ac3a1466a3e"
+  },
+  "b63c34be-5f29-4725-b6ea-34f19b426a88": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "workflowDisplayName": {
+          "value": "MeetingApprovalToCalendarEvent"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "680f364e-01fa-47bb-8d97-1e994e035a31"
+        }
+      },
+      "parameterHintsV2": {
+        "workflowDisplayName": {
+          "value": "MeetingApprovalToCalendarEvent"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "680f364e-01fa-47bb-8d97-1e994e035a31"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "PowerAppV2->ParseJSON"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "b63c34be-5f29-4725-b6ea-34f19b426a88"
+  }
+}

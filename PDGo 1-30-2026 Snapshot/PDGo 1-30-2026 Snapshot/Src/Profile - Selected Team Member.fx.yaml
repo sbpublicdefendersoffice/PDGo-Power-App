@@ -1,0 +1,176 @@
+"'Profile - Selected Team Member' As screen":
+    OnVisible: |-
+        =Set(m365TeamMember,Office365Users.MyProfile());
+        UpdateContext({_photo:IfError(Office365Users.UserPhotoMetadata(SelectedTeamMember.'Email Address').HasPhoto,false)});
+
+    "'Background Color_5' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =fxTheme.Header.BGColor
+        Height: =420
+        Width: =Parent.Width
+        ZIndex: =1
+
+    "'Profile Selected Team Member Back Button' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Back();
+        Width: =fxTheme.Header.IconSize
+        X: =42
+        Y: =30
+        ZIndex: =2
+
+    "'Profile Selected Team Member About Container' As groupContainer.manualLayoutContainer":
+        DropShadow: =DropShadow.None
+        Height: =716
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        Width: =640
+        X: =(Parent.Width - Self.Width)/2
+        Y: =420
+        ZIndex: =3
+
+        "'Profile Selected Team Member About Me Label' As label":
+            Font: =Font.'Lato Black'
+            Height: =44
+            Size: =21
+            Text: ="About Me"
+            Width: =148
+            X: =36
+            Y: =66
+            ZIndex: =1
+
+        "'Profile Selected Team Member About Me Description' As label":
+            Height: =188
+            Overflow: =Overflow.Scroll
+            Size: =18
+            Text: =SelectedTeamMember.'About Me'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =560
+            X: =36
+            Y: =110
+            ZIndex: =2
+
+        "'Profile Selected Team Member Phone Number' As label":
+            Height: =70
+            Size: =21
+            Text: =SelectedTeamMember.'Phone Number'
+            Width: =448
+            X: =133
+            Y: =331
+            ZIndex: =3
+
+        "'Profile Selected Team Member Email Address' As label":
+            Height: =70
+            Size: =21
+            Text: =SelectedTeamMember.'Email Address'
+            Width: =449
+            X: =133
+            Y: =434
+            ZIndex: =4
+
+        Icon8_2 As icon.Phone:
+            Height: =50
+            Icon: =Icon.Phone
+            Width: =50
+            X: =56
+            Y: =341
+            ZIndex: =5
+
+        Icon9_2 As icon.Mail:
+            Icon: =Icon.Mail
+            X: =49
+            Y: =440
+            ZIndex: =6
+
+        PhoneOverlapLaunchButtonTeamMember As button:
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =54
+            HoverFill: =
+            OnSelect: |-
+                =Launch("tel://"&'Profile Selected Team Member Phone Number'.Text)
+            PressedColor: =
+            PressedFill: =RGBA(0,0,0,.25)
+            Size: =24
+            Text: =
+            Width: =280
+            X: =56
+            Y: =342
+            ZIndex: =7
+
+        EmailOverlapButtonTeamMember As button:
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =54
+            HoverFill: =
+            OnSelect: |-
+                =Launch("mailto:"&'Profile Selected Team Member Email Address'.Text)
+            PressedColor: =
+            PressedFill: =RGBA(0,0,0,.25)
+            Size: =24
+            Text: =
+            Width: =436
+            X: =36
+            Y: =445
+            ZIndex: =8
+
+    "'Profile Selected Team Member Full Name_1' As label":
+        Align: =Align.Center
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =53
+        Italic: =true
+        Size: =24
+        Text: =IfError(Office365Users.UserProfile(SelectedTeamMember.'Email Address').JobTitle,"")
+        Width: =580
+        X: =30
+        Y: =346
+        ZIndex: =4
+
+    "'Profile Selected Team Member Full Name' As label":
+        Align: =Align.Center
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =51
+        Size: =26
+        Text: =SelectedTeamMember.'Full Name'
+        Width: =580
+        X: =30
+        Y: =295
+        ZIndex: =5
+
+    "'Profile Selected Team Member Profile Picture' As image":
+        ContentLanguage: =
+        Height: =200
+        Image: =If(IfError(Office365Users.UserPhotoMetadata(SelectedTeamMember.'Email Address').HasPhoto,false),Office365Users.UserPhoto(SelectedTeamMember.'Email Address'),SampleImage)
+        ImagePosition: =ImagePosition.Fill
+        RadiusBottomLeft: ='Profile Selected Team Member Profile Picture'.Height
+        RadiusBottomRight: ='Profile Selected Team Member Profile Picture'.Height
+        RadiusTopLeft: ='Profile Selected Team Member Profile Picture'.Height
+        RadiusTopRight: ='Profile Selected Team Member Profile Picture'.Height
+        Visible: =_photo
+        Width: =200
+        X: =(Parent.Width - Self.Width)/2
+        Y: =75
+        ZIndex: =6
+
+    Circle2 As circle:
+        Height: =200
+        Visible: =!_photo
+        Width: =200
+        X: =220
+        Y: =75
+        ZIndex: =7
+
+    Label22 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.Lato
+        Height: =200
+        Size: =46
+        Text: =Concatenate(Left(m365TeamMember.GivenName,1),Left(m365TeamMember.Surname,1))
+        Visible: =!_photo
+        Width: =200
+        X: =220
+        Y: =75
+        ZIndex: =8
+

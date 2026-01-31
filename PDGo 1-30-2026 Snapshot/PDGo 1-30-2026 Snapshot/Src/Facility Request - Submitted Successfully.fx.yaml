@@ -1,0 +1,77 @@
+"'Facility Request - Submitted Successfully' As screen":
+
+    Container28 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container30 As groupContainer.manualLayoutContainer:
+            FillPortions: =0
+            Height: =100
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =1
+
+            Rectangle8 As rectangle:
+                Fill: =RGBA(0, 18, 107, 1)
+                Height: =103
+                Width: =Parent.Width
+                Y: |
+                    =0
+                ZIndex: =1
+
+            Icon5_3 As icon.ArrowLeft:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =40
+                Icon: =Icon.Home
+                OnSelect: =Back()
+                Width: =40
+                X: =30
+                Y: =Parent.Height / 2 - 20
+                ZIndex: =2
+
+        Container32 As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            Label15 As label:
+                Align: =Align.Center
+                Height: =117
+                Size: =21
+                Text: ="Facility Request Submitted Successfully"
+                Width: =560
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =Parent.Height / 2
+                ZIndex: =1
+
+            Icon10_1 As icon.EmojiSmile:
+                Icon: =Icon.EmojiSmile
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =Parent.Height / 2 - 70
+                ZIndex: =2
+
+    Timer2 As timer:
+        AutoPause: =false
+        AutoStart: =true
+        Duration: =3000
+        Height: =70
+        OnTimerEnd: =Navigate('Facility Request - Home',ScreenTransition.CoverRight)
+        Visible: =false
+        Width: =280
+        Y: =98
+        ZIndex: =2
+

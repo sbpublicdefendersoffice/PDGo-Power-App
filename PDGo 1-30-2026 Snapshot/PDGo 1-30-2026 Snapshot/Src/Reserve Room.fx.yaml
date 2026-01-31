@@ -1,0 +1,129 @@
+"'Reserve Room' As screen":
+
+    Reservations_Header_Container_1 As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(0, 18, 107, 1)
+        Height: =225
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        maximumHeight: =11360
+        maximumWidth: =640
+        Width: =640
+        ZIndex: =1
+
+        Icon3_7 As icon:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Back()
+            X: =21
+            Y: =33
+            ZIndex: =1
+
+        Label4_29 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Lato Black'
+            FontWeight: =FontWeight.Bold
+            Height: =111
+            Size: =64
+            Text: |-
+                ="Book a Room
+                "
+            Width: =Parent.Width
+            Y: =78
+            ZIndex: =2
+
+    Reservations_Main_Container_1 As groupContainer.manualLayoutContainer:
+        Height: =911
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        Width: =Parent.Width
+        Y: =225
+        ZIndex: =2
+
+        Gallery10_2 As gallery.variableTemplateHeightGallery:
+            DelayItemLoading: =true
+            Height: =522
+            Items: |-
+                =Filter(
+                    Rooms_Directory,
+                    // 1. Check Capacity (Slider)
+                    Capacity >= Slider1.Value &&
+                    
+                    // 2. Check Availability (Overlap Logic)
+                    IsEmpty(
+                        Filter(
+                            Rooms_Reservations,
+                            RoomID = Rooms_Directory[@ID] &&
+                            StartTime < Dropdown4.Selected.RawHour &&
+                            EndTime > Dropdown4_1.Selected.RawHour
+                        )
+                    )
+                )
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =10
+            TemplateSize: =152
+            Y: =388
+            ZIndex: =3
+
+            Button22_2 As button:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =196
+                OnSelect: =Launch(Text(ThisItem.Link))
+                Size: =24
+                Text: =
+                Width: =208
+                ZIndex: =4
+
+            Icon16_2 As icon.Add:
+                Icon: =Icon.Globe
+                OnSelect: =Select(Parent)
+                X: =74
+                Y: =36
+                ZIndex: =5
+
+            Image4_2 As image:
+                Height: =64
+                Image: =
+                Visible: =!IsBlank(ThisItem.ResourceIcon)
+                Width: =64
+                X: =74
+                Y: =36
+                ZIndex: =6
+
+            Label29_2 As label:
+                Align: =Align.Center
+                Height: =70
+                OnSelect: =Select(Parent)
+                Overflow: =Overflow.Scroll
+                Size: =21
+                Text: =ThisItem.Title
+                Width: =208
+                Y: =126
+                ZIndex: =7
+
+        Container48 As groupContainer.manualLayoutContainer:
+            Height: =378
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            Width: =640
+            ZIndex: =4
+
+            DatePicker3 As datepicker:
+                Height: =70
+                Size: =24
+                Width: =575
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Gallery12 As gallery.variableTemplateHeightGallery:
+                DelayItemLoading: =true
+                Height: =378
+                Items: =CustomGallerySample
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplateSize: =280
+                ZIndex: =2
+

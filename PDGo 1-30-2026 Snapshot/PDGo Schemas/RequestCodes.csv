@@ -1,0 +1,2 @@
+﻿ListSchema={"schemaXmlList":["<Field ID=\"{fa564e0f-0c70-4ab9-b863-0177e6ddd247}\" Type=\"Text\" Name=\"Title\" DisplayName=\"Title\" Required=\"FALSE\" SourceID=\"http://schemas.microsoft.com/sharepoint/v3\" StaticName=\"Title\" FromBaseType=\"TRUE\" MaxLength=\"255\" />","<Field DisplayName=\"Description\" Format=\"Dropdown\" IsModern=\"TRUE\" MaxLength=\"255\" Name=\"field_1\" Title=\"Description\" Type=\"Text\" ID=\"{a45f4546-c008-45bc-a6c9-c56244e800d9}\" StaticName=\"field_1\" />"]}
+"Title","Description"

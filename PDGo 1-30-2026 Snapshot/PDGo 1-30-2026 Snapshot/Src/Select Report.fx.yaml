@@ -1,0 +1,102 @@
+"'Select Report' As screen":
+
+    Container40_1 As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height-Container16_6.Height
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        maximumHeight: =11360
+        maximumWidth: =640
+        Width: =Parent.Width
+        Y: =Container16_6.Height
+        ZIndex: =1
+
+        Icon7_3 As icon:
+            Height: =112
+            Icon: =Icon.Globe
+            OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+            Width: =112
+            X: =109
+            Y: =76
+            ZIndex: =3
+
+        Label9_2 As label:
+            Align: =Align.Center
+            Height: =70
+            OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+            Size: =21
+            Text: ="MCLE Only"
+            Width: =175
+            X: =78
+            Y: =188
+            ZIndex: =4
+
+        Icon7_4 As icon:
+            Height: =112
+            Icon: =Icon.Globe
+            OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+            Width: =112
+            X: =409
+            Y: =76
+            ZIndex: =5
+
+        Label9_6 As label:
+            Align: =Align.Center
+            Height: =70
+            OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+            Size: =21
+            Text: ="Non MCLE"
+            Width: =175
+            X: =378
+            Y: =188
+            ZIndex: =6
+
+        Icon7_5 As icon:
+            Height: =112
+            Icon: =Icon.Globe
+            OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+            Width: =112
+            X: =258
+            Y: =344
+            ZIndex: =7
+
+        Label9_7 As label:
+            Align: =Align.Center
+            Height: =70
+            OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+            Size: =21
+            Text: ="All"
+            Width: =175
+            X: =227
+            Y: =456
+            ZIndex: =8
+
+    Container16_6 As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(0, 18, 107, 1)
+        Height: =225
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        maximumHeight: =11360
+        maximumWidth: =640
+        Width: =640
+        ZIndex: =2
+
+        Label4_26 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Lato Black'
+            FontWeight: =FontWeight.Bold
+            Height: =111
+            Size: =48
+            Text: ="Select a Report"
+            Width: =Parent.Width
+            Y: =54
+            ZIndex: =1
+
+        Icon3_4 As icon:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Back()
+            X: =21
+            Y: =33
+            ZIndex: =2
+

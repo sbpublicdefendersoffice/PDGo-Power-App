@@ -1,0 +1,672 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Profile:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: "=/*resets calendar view and date selection to today*/\nSet(trainingsListView, true);\nProfile;\n         \nSet(_dateSelected, Today());         \nSet(_firstDayOfMonth, DateAdd(Today(), 1 - Day(Today()), TimeUnit.Days));         \nSet(_firstDayInView, DateAdd(_firstDayOfMonth, -(Weekday(_firstDayOfMonth) - 2 + 1), TimeUnit.Days));         \nSet(_lastDayOfMonth, DateAdd(DateAdd(_firstDayOfMonth, 1, TimeUnit.Months), -1, TimeUnit.Days));\nSet(_calendarVisible, false);\nUpdateContext({myPhoto:IfError(Office365Users.UserPhotoMetadata(User().Email).HasPhoto,false)});"
+    Children:
+      - About Container:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =716
+            Width: =640
+            Y: =420
+          Children:
+            - About Me Label:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Lato Black'
+                  Height: =44
+                  Text: ="About Me"
+                  Width: =148
+                  X: =36
+                  Y: =217
+            - About Me Description:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =188
+                  Overflow: =Overflow.Scroll
+                  Size: =18
+                  Text: =LookUp(Users, 'Email Address' = User().Email, 'About Me')
+                  VerticalAlign: =VerticalAlign.Top
+                  X: =36
+                  Y: =261
+            - Label6:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Text: =LookUp(Users, 'Email Address' = User().Email, 'Phone Number')
+                  Width: =448
+                  X: =133
+                  Y: =491
+            - Label7:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Text: =User().Email
+                  Width: =449
+                  X: =133
+                  Y: =594
+            - Icon8:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =50
+                  Icon: =Icon.Phone
+                  Width: =50
+                  X: =56
+                  Y: =501
+            - Icon9:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Icon: =Icon.Mail
+                  X: =49
+                  Y: =600
+            - PhoneOverlapLaunchButton:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =60
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =
+                  OnSelect: =Launch("tel://"&Label6.Text)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =
+                  PressedFill: =RGBA(0,0,0,.25)
+                  Text: =
+                  Width: =284
+                  X: =56
+                  Y: =491
+            - EmailOverlapLaunchButton:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =64
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =
+                  OnSelect: =Launch("mailto:"&Label7.Text)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =RGBA(0,0,0,0.25)
+                  Text: =
+                  Width: =547
+                  X: =49
+                  Y: =600
+            - Gallery11:
+                Control: Gallery@2.15.0
+                Variant: Horizontal
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =93
+                  Items: =Filter(Credentials, UserData.'Email Address' in Concat(Holders,Email,";") )
+                  TemplateSize: =295
+                  Width: =547
+                  WrapCount: =2
+                  X: =49
+                  Y: =33
+                Children:
+                  - Button23:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(56, 96, 178, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =32
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: =Select(Parent)
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        Size: =14
+                        Text: =ThisItem.Name
+                        Width: =(Len(ThisItem.Title))*Self.Size
+      - Profile Main Container:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            Width: =Parent.Width
+          Children:
+            - Profile Banner Container:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  Fill: =fxTheme.Header.BGColor
+                  FillPortions: =0
+                  Height: =420
+                  Width: =Parent.Width
+                Children:
+                  - Profile User Banner Buttons:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Height: =109
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =20
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        Width: =Parent.Width
+                        Y: =Parent.Height + Parent.Y - Self.Height - 20
+                      Children:
+                        - Profile User Banner Team Button Container:
+                            Control: GroupContainer@1.4.0
+                            Variant: ManualLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.SetByContainer
+                              FillPortions: =0
+                              Height: =107
+                              Width: =84
+                              X: =29
+                              Y: =278
+                            Children:
+                              - Profile User Banner Team Button Background:
+                                  Control: Circle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Fill: =RGBA(136, 160, 209, 1)
+                                    Height: =80
+                                    OnSelect: =Navigate('Profile - Team', ScreenTransition.CoverRight)
+                                    Width: =80
+                              - Profile User Banner Team Button Icon:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Height: =36
+                                    Icon: =Icon.People
+                                    OnSelect: =Navigate('Profile - Team', ScreenTransition.CoverRight)
+                                    Width: =57
+                                    X: =11
+                                    Y: =22
+                              - Profile User Banner Team Button Label:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =26
+                                    OnSelect: =Navigate('Profile - Team', ScreenTransition.CoverRight)
+                                    Size: =14
+                                    Text: ="Team"
+                                    Width: =80
+                                    Y: =81
+                        - Profile User Banner Office Button Container:
+                            Control: GroupContainer@1.4.0
+                            Variant: ManualLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.SetByContainer
+                              FillPortions: =0
+                              Height: =107
+                              Width: =82
+                              X: =178
+                              Y: =15
+                            Children:
+                              - Profile User Banner Office Button Background:
+                                  Control: Circle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Fill: =RGBA(136, 160, 209, 1)
+                                    Height: =80
+                                    OnSelect: =Navigate('Profile - Office', ScreenTransition.CoverRight)
+                                    Width: =80
+                              - Profile User Banner Office Button Icon:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Height: =42
+                                    Icon: =Icon.OfficeBuilding
+                                    OnSelect: =Navigate('Profile - Office', ScreenTransition.CoverRight)
+                                    Width: =73
+                                    X: =3
+                                    Y: =19
+                              - Profile User Banner Office Button Label:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =26
+                                    OnSelect: =Navigate('Profile - Office', ScreenTransition.CoverRight)
+                                    Size: =14
+                                    Text: ="Office"
+                                    Width: =80
+                                    Y: =80
+                        - Profile User Banner Team Calendar Container:
+                            Control: GroupContainer@1.4.0
+                            Variant: ManualLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.SetByContainer
+                              FillPortions: =0
+                              Height: =105
+                              Width: =90
+                              X: =232
+                              Y: =234
+                            Children:
+                              - Profile User Banner Calendar Button Background:
+                                  Control: Circle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Fill: =RGBA(136, 160, 209, 1)
+                                    Height: =80
+                                    OnSelect: =Navigate('Profile - Calendar', ScreenTransition.CoverRight)
+                                    Width: =80
+                                    X: =7
+                              - Profile User Banner Calendar Button Icon:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Height: =37
+                                    Icon: =Icon.CalendarBlank
+                                    OnSelect: =Navigate('Profile - Calendar', ScreenTransition.CoverRight)
+                                    Width: =52
+                                    X: =21
+                                    Y: =21
+                              - Profile User Banner Calendar Button Label:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =26
+                                    OnSelect: =Navigate('Profile - Calendar', ScreenTransition.CoverRight)
+                                    Size: =14
+                                    Text: ="Calendar"
+                                    Width: =94
+                                    Y: =80
+                        - Profile User Banner Supervisor Button Container:
+                            Control: GroupContainer@1.4.0
+                            Variant: ManualLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.SetByContainer
+                              FillPortions: =0
+                              Height: =108
+                              Visible: =IsBlank(UserData.Supervisor.Value)
+                              Width: =107
+                              X: =224
+                              Y: =233
+                            Children:
+                              - Profile User Banner Supervisor Button Background:
+                                  Control: Circle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Fill: =RGBA(136, 160, 209, 1)
+                                    Height: =80
+                                    OnSelect: |
+                                      =UpdateContext({userSupervisor:LookUp(Users, LookUp(Users,User().Email = 'Email Address',Team).Value in Supervisor.Value)});
+                                      If(User().FullName <> userSupervisor.'Full Name',Set(_mySupervisor,userSupervisor),Set(_mySupervisor,Blank()));
+
+
+                                      Navigate('Profile - Supervisor', ScreenTransition.CoverRight);
+                                    Width: =80
+                                    X: =16
+                              - Profile User Banner Supervisor Button Icon:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Height: =46
+                                    Icon: =Icon.Person
+                                    OnSelect: |-
+                                      =Navigate('Profile - Supervisor', ScreenTransition.CoverRight);
+
+                                      Set(_mySupervisor, LookUp(Users, 'Email Address' = User().Email, Supervisor))
+                                    Width: =40
+                                    X: =35
+                                    Y: =17
+                              - Profile User Banner Supervisor Button Label:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =26
+                                    OnSelect: |-
+                                      =Navigate('Profile - Supervisor', ScreenTransition.CoverRight);
+
+                                      Set(_mySupervisor, LookUp(Users, 'Email Address' = User().Email, Supervisor))
+                                    Size: =14
+                                    Text: ="Supervisor"
+                                    Width: =111
+                                    Y: =80
+                        - Profile User Banner Settings Button Container:
+                            Control: GroupContainer@1.4.0
+                            Variant: ManualLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.SetByContainer
+                              FillPortions: =0
+                              Height: =112
+                              Visible: =false
+                              Width: =104
+                              X: =449
+                              Y: =233
+                            Children:
+                              - Profile User Banner Settings Button Background:
+                                  Control: Circle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Fill: =RGBA(136, 160, 209, 1)
+                                    Height: =80
+                                    OnSelect: =Navigate('Profile - Settings', ScreenTransition.CoverRight)
+                                    Width: =80
+                                    X: =15
+                              - Profile User Banner Settings Button Icon:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Height: =46
+                                    Icon: =Icon.Settings
+                                    OnSelect: =Navigate('Profile - Settings', ScreenTransition.CoverRight)
+                                    Width: =43
+                                    X: =34
+                                    Y: =19
+                              - Profile User Banner Settings Button Label:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =26
+                                    OnSelect: =Navigate('Profile - Settings', ScreenTransition.CoverRight)
+                                    Size: =14
+                                    Text: |-
+                                      ="Settings
+                                      "
+                                    Width: =111
+                                    Y: =80
+                  - Profile User Banner Profile Picture:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(186, 202, 226, 1)
+                        BorderThickness: =2
+                        Height: =145
+                        Image: |-
+                          =//LookUp(Users, 'Email Address' = User().Email, 'Profile Picture')
+                          If(Office365Users.UserPhotoMetadata(User().Email).HasPhoto,User().Image,SampleImage)
+                        ImagePosition: =ImagePosition.Fill
+                        RadiusBottomLeft: ='Profile User Banner Profile Picture'.Height
+                        RadiusBottomRight: ='Profile User Banner Profile Picture'.Height
+                        RadiusTopLeft: ='Profile User Banner Profile Picture'.Height
+                        RadiusTopRight: ='Profile User Banner Profile Picture'.Height
+                        Visible: =myPhoto
+                        Width: =Self.Height
+                        X: =(Parent.Width - Self.Width)/2
+                        Y: =5
+                  - Profile User Banner User Name:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =fxTheme.Header.TextColor
+                        Font: =Font.Lato
+                        Height: =51
+                        Size: =26
+                        Text: =UserRecord.'Full Name'
+                        Width: =Parent.Width - 2*Self.X
+                        X: =40
+                        Y: =150
+                  - Profile User Banner Job Designation:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =fxTheme.Header.TextColor
+                        Font: =Font.Lato
+                        Height: =51
+                        Italic: =true
+                        Size: =26
+                        Text: =Office365Users.UserProfile(UserData.'Email Address').JobTitle
+                        Width: =Parent.Width - 2*Self.X
+                        X: =60
+                        Y: =247
+                  - Circle3:
+                      Control: Circle@2.3.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(56, 96, 178, 1)
+                        Height: =145
+                        Visible: =!myPhoto
+                        Width: =145
+                        X: ='Profile User Banner Profile Picture'.X
+                        Y: ='Profile User Banner Profile Picture'.Y
+                  - Label21:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Font: =Font.Lato
+                        Height: =145
+                        Size: =42
+                        Text: =Concatenate(Left(Office365Users.MyProfile().GivenName,1),Left(Office365Users.MyProfile().Surname,1))
+                        Visible: =!myPhoto
+                        Width: =145
+                        X: ='Profile User Banner Profile Picture'.X
+                        Y: ='Profile User Banner Profile Picture'.Y
+                  - Profile User Banner Job Designation_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =fxTheme.Header.TextColor
+                        Font: =Font.Lato
+                        Height: =51
+                        Italic: =true
+                        Size: =26
+                        Text: =UserRecord.Pronouns
+                        Width: =Parent.Width - 2*Self.X
+                        X: =79
+                        Y: =201
+                  - Circle3_1:
+                      Control: Circle@2.3.0
+                      Properties:
+                        BorderColor: =RGBA(241, 244, 249, 1)
+                        Fill: =RGBA(149, 149, 149, 1)
+                        Height: =72
+                        Visible: =!myPhoto
+                        Width: =72
+                        X: =Icon13.X-4
+                        Y: =Icon13.Y
+                  - Icon13:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(255, 255, 255, 1)
+                        Icon: =If(Office365Users.UserProfile(UserData.'Email Address').OfficeLocation = "Remote", Icon.Laptop,Icon.OfficeBuilding)
+                        X: =Circle3.X+Circle3.Width+30
+                        Y: =(Circle3.Y+Circle3.Height)/2-Self.Height/2
+            - About Container_2:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  Height: =716
+                  Visible: =false
+                  Width: =Parent.Width
+                  Y: =420
+                Children:
+                  - About Me Label_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Lato Black'
+                        Height: =44
+                        Text: ="About Me"
+                        Width: =148
+                        X: =-148
+                        Y: =-44
+                  - About Me Description_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =188
+                        Overflow: =Overflow.Scroll
+                        Size: =18
+                        Text: =LookUp(Users, 'Email Address' = User().Email, 'About Me')
+                        VerticalAlign: =VerticalAlign.Top
+                        X: =36
+                        Y: =110
+                  - Label6_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =LookUp(Users, 'Email Address' = User().Email, 'Phone Number')
+                        Width: =448
+                        X: =133
+                        Y: =331
+                  - Label7_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Text: =User().Email
+                        Width: =449
+                        X: =133
+                        Y: =434
+                  - Icon8_3:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =50
+                        Icon: =Icon.Phone
+                        Width: =50
+                        X: =56
+                        Y: =341
+                  - Icon9_3:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Icon: =Icon.Mail
+                        X: =49
+                        Y: =440
+      - Profile Back Button:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Navigate('Home Screen', ScreenTransition.Cover)
+            Width: =fxTheme.Header.IconSize
+            X: =40
+            Y: =40
+      - Profile User Banner Edit Button:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =fxTheme.Header.TextColor
+            Height: =fxTheme.Header.IconSize
+            Icon: =Icon.Edit
+            OnSelect: =Navigate('Profile - Edit', ScreenTransition.CoverRight)
+            Width: =fxTheme.Header.IconSize
+            X: =Parent.Width - Self.Width - 20
+            Y: =44
+      - Gallery3:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =96
+            Items: =webLinks
+            TemplateSize: =128
+            Visible: =UserData.Team.Value = "Attorney"
+            Width: =Parent.Width/1.2
+            X: =16
+            Y: =956
+          Children:
+            - Image1:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =64
+                  Image: =PDGoLogo
+                  ImagePosition: =ImagePosition.Fill
+                  OnSelect: =Select(Parent)
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                  Width: =64
+                  X: =(Parent.TemplateWidth / 2) - (Self.Width / 2)
+            - Title1:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =32
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =14
+                  Text: =ThisItem.Name
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: '=Parent.TemplateWidth '
+                  Y: =Image1.Y + Image1.Height
+            - Button13:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =96
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(0,0,0,0.125)
+                  OnSelect: =Select(Parent)
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =RGBA(0,0,0,0.25)
+                  Text: =
+                  Width: =96
+                  X: =16

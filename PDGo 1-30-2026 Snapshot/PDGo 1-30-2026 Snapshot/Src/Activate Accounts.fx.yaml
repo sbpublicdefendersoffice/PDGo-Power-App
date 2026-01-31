@@ -1,0 +1,142 @@
+"'Activate Accounts' As screen":
+    OnVisible: |-
+        =UpdateContext({AARecord:Blank()});
+
+    Container2_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        Y: |
+            =0
+        ZIndex: =1
+
+        Container16_2 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            Label4_17 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.'Lato Black'
+                FontWeight: =FontWeight.Bold
+                Height: =111
+                Size: =48
+                Text: ="Activate Accounts"
+                Width: =Parent.Width
+                Y: =(Parent.Height - Self.Height) / 2
+                ZIndex: =1
+
+            Icon3_2 As icon.Person:
+                Color: =RGBA(255, 255, 255, 1)
+                Icon: =Icon.Person
+                OnSelect: =Navigate(Profile, ScreenTransition.Cover);
+                X: =20
+                Y: =20
+                ZIndex: =2
+
+            Icon5_2 As icon.Settings:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =50
+                Icon: =Icon.Settings
+                OnSelect: =Navigate('Profile - Settings', ScreenTransition.Cover)
+                Width: =50
+                X: =Parent.Width - Self.Width - 20
+                Y: =20
+                ZIndex: =3
+
+        AAMainContainer As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =3
+
+            AASelectUser As dropdown:
+                Height: =70
+                Items: =Filter(Users, Active = false)
+                OnSelect: |-
+                    =UpdateContext({AARecord:Self.Selected})
+                Size: =21
+                Width: =575
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Label4 As label:
+                Height: =70
+                Size: =21
+                Text: =AARecord.'Full Name'
+                Width: =560
+                X: =40
+                Y: =132
+                ZIndex: =2
+
+            Label4_18 As label:
+                Height: =70
+                Size: =21
+                Text: =AARecord.'Email Address'
+                Width: =560
+                X: =Label4.X
+                Y: =202
+                ZIndex: =3
+
+            Label4_19 As label:
+                Height: =70
+                Size: =21
+                Text: =AARecord.'Phone Number'
+                Width: =560
+                X: =Label4.X
+                Y: =272
+                ZIndex: =4
+
+            Label4_20 As label:
+                Height: =70
+                Size: =21
+                Text: =AARecord.Team.Value
+                Width: =560
+                X: =Label4.X
+                Y: =370
+                ZIndex: =5
+
+            Label4_21 As label:
+                Height: =70
+                Size: =21
+                Text: =AARecord.UserType.Value
+                Width: =560
+                X: =Label4.X
+                Y: =452
+                ZIndex: =6
+
+            Label4_22 As label:
+                Height: =70
+                Size: =21
+                Text: =IfError(Office365Users.UserProfileV2(AARecord.'Email Address').jobTitle,"None",If(IsBlank(Office365Users.UserProfileV2(AARecord.'Email Address').jobTitle),"None",Office365Users.UserProfileV2(AARecord.'Email Address').jobTitle))
+                Width: =560
+                X: =Label4.X
+                Y: =536
+                ZIndex: =7
+
+            Button12 As button:
+                Height: =70
+                OnSelect: =AddAccountstoSiteGroupsandActivate.Run("mperez@countyofsb.org")
+                Size: =24
+                Text: ="Button"
+                Width: =280
+                X: =159
+                Y: =702
+                ZIndex: =8
+

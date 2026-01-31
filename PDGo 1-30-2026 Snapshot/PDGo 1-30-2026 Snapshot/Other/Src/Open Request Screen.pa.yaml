@@ -1,0 +1,1283 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Open Request Screen:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: =UpdateContext({PopUpCancel:false})
+    Children:
+      - DetailsPage_1:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Width: =Parent.Width
+          Children:
+            - Rectangle3_4:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(56, 96, 178, .9)
+                  Height: =Parent.Height
+                  Width: =Parent.Width
+            - Rectangle4_3:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(255, 255, 255, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height-30
+                  Width: =Parent.Width-30
+                  X: =(Parent.Width-Self.Width)/2
+                  Y: =(Parent.Height-Self.Height)/2
+            - Container2_5:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Height: =Rectangle4_3.Height
+                  LayoutDirection: =LayoutDirection.Vertical
+                  Width: =Rectangle4_3.Width
+                  X: =Rectangle4_3.X
+                  Y: =Rectangle4_3.Y
+                Children:
+                  - Container3_2:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =0
+                        Height: =70
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                      Children:
+                        - Label17_6:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =Parent.Height
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =13
+                              Text: ="Time Off Request for " & ApproveRecord.'Created By'.DisplayName
+                              Width: =Parent.Width
+                  - Container14_2:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Height: =200
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutOverflowY: =LayoutOverflow.Scroll
+                      Children:
+                        - Container15_2:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              FillPortions: =0
+                              Height: =50
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutJustifyContent: =LayoutJustifyContent.Center
+                              LayoutMinHeight: =100
+                            Children:
+                              - Label22_21:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: ="Name:"
+                                    Width: =150
+                                    X: =101
+                                    Y: =114
+                              - Label22_22:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =3
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: =ApproveRecord.'Created By'.DisplayName
+                                    Width: =150
+                                    X: =101
+                                    Y: =154
+                        - Container29_10:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              Fill: =RGBA(215, 223, 240, 1)
+                              FillPortions: =0
+                              Height: =50
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinHeight: =100
+                            Children:
+                              - Label22_23:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: ="Date Created:"
+                                    Width: =150
+                                    X: =266
+                                    Y: =114
+                              - Label23_3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: =ApproveRecord.Created
+                                    Width: =150
+                                    X: =285
+                                    Y: =154
+                        - Container29_11:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              FillPortions: =0
+                              Height: =Max(HtmlText2_1.Height, 50)
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinHeight: =100
+                            Children:
+                              - Label22_24:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AlignInContainer: =AlignInContainer.Start
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: ="Additional comments:"
+                                    Width: =150
+                                    X: =408
+                                    Y: =114
+                              - HtmlText2_1:
+                                  Control: HtmlViewer@2.1.0
+                                  Properties:
+                                    AlignInContainer: =AlignInContainer.Center
+                                    AutoHeight: =true
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =40
+                                    HtmlText: =ApproveRecord.Reason
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =200
+                                    Size: =14
+                                    Width: =200
+                        - Container29_12:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              Fill: =RGBA(215, 223, 240, 1)
+                              FillPortions: =0
+                              Height: =50
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinHeight: =50
+                            Children:
+                              - Label22_25:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: ="Status:"
+                                    Width: =150
+                                    X: =542
+                                    Y: =114
+                              - Label25_3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.Lato
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: =ApproveRecord.Status.Value
+                                    Width: =150
+                                    X: =553
+                                    Y: =154
+                        - Container29_13:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              FillPortions: =0
+                              Height: =Max(50, HtmlText1_1.Height)
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinHeight: =50
+                            Children:
+                              - Label22_26:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: ="Supervisor Comments:"
+                                    Width: =150
+                                    X: =695
+                                    Y: =114
+                              - HtmlText1_1:
+                                  Control: HtmlViewer@2.1.0
+                                  Properties:
+                                    AlignInContainer: =AlignInContainer.Center
+                                    AutoHeight: =true
+                                    FillPortions: =1
+                                    Font: =Font.'Open Sans'
+                                    Height: =
+                                    HtmlText: =ApproveRecord.Comments
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =200
+                                    Size: =14
+                                    Width: =200
+                        - Container29_14:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              FillPortions: =0
+                              Height: =Max(50)
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinHeight: =50
+                            Children:
+                              - Label22_27:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    FillPortions: =1
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =Parent.Height
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =150
+                                    Size: =14
+                                    Text: =If(CountRows('Dates Gallery_2'.AllItems)>1,"Requested Dates", "Requested Date")
+                                    Width: =150
+                                    X: =695
+                                    Y: =114
+                        - Dates Gallery_2:
+                            Control: Gallery@2.15.0
+                            Variant: Vertical
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: =400
+                              Items: =Filter(TimeOffRequestDays, Request = ApproveRecord.ID)
+                              LayoutMinHeight: =400
+                              TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(300, Self.Height - 60))
+                              Width: =Parent.Width
+                            Children:
+                              - Container2_6:
+                                  Control: GroupContainer@1.4.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    Height: =Parent.TemplateHeight
+                                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                                    Width: =Min(Parent.TemplateWidth, App.Width)
+                                  Children:
+                                    - Container6_5:
+                                        Control: GroupContainer@1.4.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          Fill: =RGBA(215, 223, 240, 1)
+                                          FillPortions: =0
+                                          Height: =50
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =100
+                                        Children:
+                                          - Label14_6:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                Font: =Font.'Open Sans'
+                                                FontWeight: =FontWeight.Semibold
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =150
+                                                Size: =14
+                                                Text: ="Start-End Date:"
+                                                Width: =150
+                                          - Label4_7:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                FillPortions: =1
+                                                Font: =Font.'Open Sans'
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =110
+                                                Size: =14
+                                                Text: =ThisItem.StartDate & " - " & ThisItem.EndDate
+                                                Width: =150
+                                    - Container6_6:
+                                        Control: GroupContainer@1.4.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          FillPortions: =0
+                                          Height: =50
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =100
+                                          Visible: =Not(ThisItem.EntireDay)
+                                        Children:
+                                          - Label14_7:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                Font: =Font.'Open Sans'
+                                                FontWeight: =FontWeight.Semibold
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =150
+                                                Size: =14
+                                                Text: ="Start-End Hour:"
+                                                Width: =150
+                                          - Label4_8:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                FillPortions: =1
+                                                Font: =Font.'Open Sans'
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =110
+                                                Size: =13
+                                                Text: =ThisItem.StartTime & "-" & ThisItem.EndTime
+                                                Width: =150
+                                    - Container6_7:
+                                        Control: GroupContainer@1.4.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          Fill: =RGBA(215, 223, 240, 1)
+                                          FillPortions: =0
+                                          Height: =50
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =100
+                                        Children:
+                                          - Label14_8:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                Font: =Font.'Open Sans'
+                                                FontWeight: =FontWeight.Semibold
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =150
+                                                Size: =14
+                                                Text: ="Entire Day:"
+                                                Width: =150
+                                          - EntireDayLabel:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                FillPortions: =1
+                                                Font: =Font.'Open Sans'
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =110
+                                                Size: =13
+                                                Text: =ThisItem.EntireDay
+                                                Width: =150
+                                    - Container6_8:
+                                        Control: GroupContainer@1.4.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          FillPortions: =0
+                                          Height: =50
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =100
+                                        Children:
+                                          - Label14_9:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                Font: =Font.'Open Sans'
+                                                FontWeight: =FontWeight.Semibold
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =150
+                                                Size: =14
+                                                Text: ="Leave Code:"
+                                                Width: =150
+                                          - Label4_10:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                FillPortions: =1
+                                                Font: =Font.'Open Sans'
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =110
+                                                Size: =13
+                                                Text: =ThisItem.Reason
+                                                Width: =150
+                                    - Container6_9:
+                                        Control: GroupContainer@1.4.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          FillPortions: =0
+                                          Height: =Max(HtmlText3_1.Height, 50)
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutMinHeight: =100
+                                        Children:
+                                          - Label14_10:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                BorderColor: =RGBA(0, 18, 107, 1)
+                                                Font: =Font.'Open Sans'
+                                                FontWeight: =FontWeight.Semibold
+                                                Height: =Parent.Height
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =150
+                                                Size: =14
+                                                Text: ="User Comments:"
+                                                Width: =150
+                                          - HtmlText3_1:
+                                              Control: HtmlViewer@2.1.0
+                                              Properties:
+                                                AlignInContainer: =AlignInContainer.Center
+                                                AutoHeight: =true
+                                                Font: =Font.'Open Sans'
+                                                Height: =40
+                                                HtmlText: =ThisItem.AdditionalComments
+                                                LayoutMinHeight: =40
+                                                LayoutMinWidth: =200
+                                                Size: =14
+                                                Width: =200
+                        - Container34_2:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              FillPortions: =0
+                              Height: =60
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutJustifyContent: =LayoutJustifyContent.Center
+                              LayoutMinHeight: =100
+                              PaddingLeft: =10
+                              PaddingRight: =10
+                            Children:
+                              - Button6_3:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =ColorFade(Self.Fill, -15%)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                    Fill: =RGBA(56, 96, 178, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =40
+                                    HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                                    HoverColor: =RGBA(255, 255, 255, 1)
+                                    HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =160
+                                    OnSelect: |
+                                      =/*If(Text(ApproveRecord.Requester) = Text(UserRecord.ID), Navigate('TO Request Screen', ScreenTransition.UnCover, {Edit: ApproveRecord}),
+                                          Switch(ApproveRecord.Reason,
+                                              Blank(),UpdateContext({PopUpDecide:true}),
+                                              "Approved", UpdateContext({PopUpApprove:true}),
+                                              "Denied", UpdateContext({PopUpDeny:true}),
+                                              "Pending", UpdateContext({PopUpDecide:true})
+                                          );
+                                      );*/
+
+                                      Switch(ApproveRecord.Reason,
+                                      Blank(),UpdateContext({PopUpDecide:true}), "Approved", UpdateContext({PopUpApprove:true}),"Denied", UpdateContext({PopUpDeny:true}),"Pending", UpdateContext({PopUpDecide:true}));
+                                    PressedBorderColor: =Self.Fill
+                                    PressedColor: =Self.Fill
+                                    PressedFill: =Self.Color
+                                    Size: =15
+                                    Text: ="Modify"
+                                    Width: =160
+                                    X: =225
+                                    Y: =549
+                        - Container34_3:
+                            Control: GroupContainer@1.4.0
+                            Variant: AutoLayout
+                            Properties:
+                              FillPortions: =0
+                              Height: =60
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutJustifyContent: =LayoutJustifyContent.Center
+                              LayoutMinHeight: =100
+                              PaddingLeft: =10
+                              PaddingRight: =10
+                              Visible: =ApproveRecord.Requester = UserRecord.ID
+                            Children:
+                              - Button6_4:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =ColorFade(Self.Fill, -15%)
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                    Fill: =RGBA(178, 56, 96, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =40
+                                    HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                                    HoverColor: =RGBA(255, 255, 255, 1)
+                                    HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                                    LayoutMinHeight: =40
+                                    LayoutMinWidth: =160
+                                    OnSelect: |-
+                                      =UpdateContext({PopUpCancel: true})
+                                    PressedBorderColor: =Self.Fill
+                                    PressedColor: =Self.Fill
+                                    PressedFill: =Self.Color
+                                    Size: =15
+                                    Text: ="Cancel"
+                                    Width: =160
+                                    X: =225
+                                    Y: =549
+                  - Container31_2:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =0
+                        Height: =60
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                      Children:
+                        - Button7_5:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =40
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =UpdateContext({ApproveRecord: Blank()});
+                                Back();
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =15
+                              Text: ="Close"
+                              Width: =160
+                              X: =983
+                              Y: =549
+      - DecidePage:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Visible: =PopUpDecide
+            Width: =Parent.Width
+          Children:
+            - Rectangle2_15:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 0, 0, .8)
+                  Height: =Parent.Height
+                  Width: =Parent.Width
+            - Rectangle5_15:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height-50
+                  Width: =Parent.Width-50
+                  X: =(Parent.Width-Self.Width)/2
+                  Y: =(Parent.Height-Self.Height)/2
+            - Container35_14:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Height: =Rectangle5_15.Height
+                  LayoutDirection: =LayoutDirection.Vertical
+                  Width: =Rectangle5_15.Width
+                  X: =Rectangle5_15.X
+                  Y: =Rectangle5_15.Y
+                Children:
+                  - Container3_8:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =RGBA(215, 223, 240, 1)
+                        Height: =Parent.Height
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =20
+                        LayoutMinHeight: =100
+                        PaddingBottom: =30
+                        PaddingTop: =30
+                        Width: =Parent.Width
+                      Children:
+                        - Label17_11:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =100
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =16
+                              Text: ="Decide to Approve or Deny for " & ApproveRecord.'Created By'.DisplayName & "?"
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =Parent.Width
+                        - Label4_12:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.Lato
+                              Height: =60
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =16
+                              Text: ="Supervisor comment:"
+                              Width: =Parent.Width -30
+                        - ReasonText_4:
+                            Control: Classic/TextInput@2.3.2
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Default: =""
+                              Font: =Font.'Open Sans'
+                              Height: =200
+                              HintText: ="Enter Reason Here."
+                              HoverBorderColor: =RGBA(0, 18, 107, 1)
+                              HoverFill: =RGBA(186, 202, 226, 1)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =320
+                              Mode: =TextMode.MultiLine
+                              Size: =13
+                              Width: =Parent.Width - 30
+                        - Rectangle3_6:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(215, 223, 240, 1)
+                              Fill: =RGBA(215, 223, 240, 1)
+                              FillPortions: =1
+                              Height: =
+                              LayoutMinHeight: =0
+                        - Button9_20:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =If( IsMatch(ReasonText_4.Text, "\s*" ), UpdateContext({PopUp2: true}), 
+                                    Patch(TimeOffRequests, LookUp(TimeOffRequests, ID = ApproveRecord.ID), {Status: {Value: "Denied"}, Comments: ReasonText_4.Text});
+                                    UpdateContext({ApproveRecord: Blank()});
+                                    Reset(ReasonText_4);   
+                                    UpdateContext({PopUp3: true});
+                                    UpdateContext({PopUpDecide: false});
+                                )
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =12
+                              Text: ="Deny Request"
+                              Width: =160
+                              X: =593
+                              Y: =492
+                        - Button9_22:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =If( IsMatch(ReasonText_4.Text, "\s*" ), UpdateContext({PopUp2: true}), 
+                                    Patch(TimeOffRequests, LookUp(TimeOffRequests, ID = ApproveRecord.ID), {Status: {Value: "Approved"}, Comments: ReasonText_4.Text});
+                                    Reset(ReasonText_4);   
+                                    UpdateContext({PopUp3: true});
+                                    UpdateContext({PopUpDecide: false});
+                                )
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =12
+                              Text: ="Approve Request"
+                              Width: =160
+                              X: =593
+                              Y: =492
+                        - Button9_21:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =UpdateContext({PopUpDecide: false});
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =15
+                              Text: ="Cancel"
+                              Width: =160
+                              X: =593
+                              Y: =492
+      - ModifyDeny_1:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Visible: |+
+              =PopUpDeny
+
+
+            Width: =Parent.Width
+          Children:
+            - Rectangle2_9:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 0, 0, .8)
+                  Height: =Parent.Height
+                  Width: =Parent.Width
+            - Rectangle5_9:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height-50
+                  Width: =Parent.Width-50
+                  X: =(Parent.Width-Self.Width)/2
+                  Y: =(Parent.Height-Self.Height)/2
+            - Container35_8:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Height: =Rectangle5_9.Height
+                  LayoutDirection: =LayoutDirection.Vertical
+                  Width: =Rectangle5_9.Width
+                  X: =Rectangle5_9.X
+                  Y: =Rectangle5_9.Y
+                Children:
+                  - Container3_4:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =RGBA(215, 223, 240, 1)
+                        Height: =70
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =20
+                        LayoutMinHeight: =100
+                        PaddingBottom: =30
+                        PaddingTop: =30
+                      Children:
+                        - Label17_9:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =100
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =16
+                              Text: ="Modify the status Request for " & ApproveRecord.'Created By'.DisplayName & "?"
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =Parent.Width
+                        - Label4_3:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.Lato
+                              Height: =60
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =16
+                              Text: ="Reason for change:"
+                              Width: =Parent.Width -30
+                        - ReasonText_1:
+                            Control: Classic/TextInput@2.3.2
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Default: =""
+                              Font: =Font.'Open Sans'
+                              Height: =200
+                              HintText: ="Enter Reason Here."
+                              HoverBorderColor: =RGBA(0, 18, 107, 1)
+                              HoverFill: =RGBA(186, 202, 226, 1)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =320
+                              Mode: =TextMode.MultiLine
+                              Size: =13
+                              Width: =Parent.Width - 30
+                        - Rectangle3_1:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Fill: =RGBA(215, 223, 240, 1)
+                              FillPortions: =1
+                              LayoutMinHeight: =0
+                        - Button9_11:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =If( IsMatch(ReasonText_1.Text, "\s*" ), UpdateContext({PopUp2: true}), 
+                                Patch(TimeOffRequests, LookUp(TimeOffRequests, ID = ApproveRecord.ID), {Status: {Value: "Approved"}, Comments:"Switched to approve: " & ReasonText_1.Text & " Previous comment: " & ApproveRecord.Comments});
+                                UpdateContext({PopUp3: true});
+                                UpdateContext({PopUpDeny: false});
+                                Reset(ReasonText_1);
+                                UpdateContext({PopUp:false}))
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =12
+                              Text: ="Switch to Approve"
+                              Width: =160
+                              X: =593
+                              Y: =492
+                        - Button9_12:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: "=UpdateContext({PopUpDeny: false}); "
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =15
+                              Text: ="Cancel"
+                              Width: =160
+                              X: =593
+                              Y: =492
+      - ModifyApprove_2:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Visible: |+
+              =PopUpApprove
+
+
+            Width: =Parent.Width
+          Children:
+            - Rectangle2_12:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 0, 0, .8)
+                  Height: =Parent.Height
+                  Width: =Parent.Width
+            - Rectangle5_12:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height-50
+                  Width: =Parent.Width-50
+                  X: =(Parent.Width-Self.Width)/2
+                  Y: =(Parent.Height-Self.Height)/2
+            - Container35_11:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Height: =Rectangle5_12.Height
+                  LayoutDirection: =LayoutDirection.Vertical
+                  Width: =Rectangle5_12.Width
+                  X: =Rectangle5_12.X
+                  Y: =Rectangle5_12.Y
+                Children:
+                  - Container3_7:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Fill: =RGBA(215, 223, 240, 1)
+                        Height: =70
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =20
+                        LayoutMinHeight: =100
+                        PaddingBottom: =30
+                        PaddingTop: =30
+                      Children:
+                        - Label17_10:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =100
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =16
+                              Text: ="Modify the status Request for " & ApproveRecord.'Created By'.DisplayName & "?"
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =Parent.Width
+                        - Label4_11:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.Lato
+                              Height: =60
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =16
+                              Text: ="Reason for change:"
+                              Width: =Parent.Width -30
+                        - ReasonText_3:
+                            Control: Classic/TextInput@2.3.2
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Default: =""
+                              Font: =Font.'Open Sans'
+                              Height: =200
+                              HintText: ="Enter Reason Here."
+                              HoverBorderColor: =RGBA(0, 18, 107, 1)
+                              HoverFill: =RGBA(186, 202, 226, 1)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =320
+                              Mode: =TextMode.MultiLine
+                              Size: =13
+                              Width: =Parent.Width - 30
+                        - Rectangle3_5:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(215, 223, 240, 1)
+                              Fill: =RGBA(215, 223, 240, 1)
+                              FillPortions: =1
+                              LayoutMinHeight: =0
+                        - Button9_15:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =If( IsMatch(ReasonText_3.Text, "\s*" ), UpdateContext({PopUp2: true}), 
+                                Patch(TimeOffRequests, LookUp(TimeOffRequests, ID = ApproveRecord.ID), {Status: {Value: "Denied"}, Comments:"Switched to deny: " & ReasonText_3.Text & " Previous comment: " & ApproveRecord.Comments});
+                                UpdateContext({PopUp3: true});
+                                UpdateContext({PopUpApprove: false});
+                                Reset(ReasonText_3);
+                                UpdateContext({PopUp:false}))
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =12
+                              Text: ="Switch to Deny"
+                              Width: =160
+                              X: =593
+                              Y: =492
+                        - Button9_17:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =UpdateContext({PopUpApprove: false});
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =15
+                              Text: ="Cancel"
+                              Width: =160
+                              X: =593
+                              Y: =492
+      - SuccessPopup_3:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Visible: =PopUp3
+            Width: =Parent.Width
+          Children:
+            - Rectangle2_13:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 0, 0, .8)
+                  Height: =Parent.Height
+                  Width: =Parent.Width
+            - Rectangle5_13:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(215, 223, 240, 1)
+                  Height: =Parent.Height-50
+                  Width: =Parent.Width-50
+                  X: =(Parent.Width-Self.Width)/2
+                  Y: =(Parent.Height-Self.Height)/2
+            - Container35_12:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Height: =Rectangle5_13.Height
+                  LayoutDirection: =LayoutDirection.Vertical
+                  Width: =Rectangle5_13.Width
+                  X: =Rectangle5_13.X
+                  Y: =Rectangle5_13.Y
+                Children:
+                  - Container36_6:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Height: =Parent.Height-100
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                      Children:
+                        - Label18_7:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =Parent.Height
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =15
+                              Text: ="Success! Your request has been submitted"
+                              Width: =Parent.Width
+                              X: =320
+                              Y: =112
+                  - Container37_7:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =0
+                        Height: =120
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                      Children:
+                        - Button9_18:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =Back();
+                                UpdateContext({PopUp3: false})
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =15
+                              Text: ="OK"
+                              Width: =160
+                              X: =593
+                              Y: =492
+      - error page_2:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Visible: =PopUp2
+            Width: =Parent.Width
+          Children:
+            - Rectangle2_14:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 0, 0, .8)
+                  Height: =Parent.Height
+                  Width: =Parent.Width
+            - Rectangle5_14:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height-50
+                  Width: =Parent.Width-50
+                  X: =(Parent.Width-Self.Width)/2
+                  Y: =(Parent.Height-Self.Height)/2
+            - Container35_13:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(215, 223, 240, 1)
+                  Height: =Rectangle5_14.Height
+                  LayoutDirection: =LayoutDirection.Vertical
+                  Width: =Rectangle5_14.Width
+                  X: =Rectangle5_14.X
+                  Y: =Rectangle5_14.Y
+                Children:
+                  - Container36_4:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =3
+                        Height: =200
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                      Children:
+                        - Label18_5:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =118
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =150
+                              Size: =17
+                              Text: ="Please Specify the reason for denial."
+                              Width: =Parent.Width - 30
+                              X: =320
+                              Y: =112
+                  - Container37_8:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =0
+                        Height: =100
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =100
+                      Children:
+                        - Button9_19:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(56, 96, 178, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =60
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                              LayoutMinHeight: =40
+                              LayoutMinWidth: =160
+                              OnSelect: |-
+                                =UpdateContext({PopUp2: false})
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Size: =15
+                              Text: ="OK"
+                              Width: =160
+                              X: =593
+                              Y: =492
+      - CancellationPage:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height
+            Visible: |+
+              =PopUpCancel
+
+
+            Width: =Parent.Width

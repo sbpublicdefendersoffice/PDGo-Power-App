@@ -1,0 +1,209 @@
+"'Home Screen' As screen":
+    OnVisible: |-
+        = Set(IsSidebarNotOpen, If('Home Screen'.Width < 600, 100, 20));
+           
+        Set(
+            UserData,
+            LookUp(
+                Users,
+                'Email Address' = User().Email
+            )
+        );
+        
+        Refresh(Users);
+        Refresh('Users-Teams');
+        Refresh(Teams)
+
+    Container2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        Y: |
+            =0
+        ZIndex: =12
+
+        Container16 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            Label4_1 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.'Lato Black'
+                FontWeight: =FontWeight.Bold
+                Height: =111
+                Size: =96
+                Text: ="PDGo"
+                Width: =Parent.Width
+                Y: =(Parent.Height - Self.Height) / 2
+                ZIndex: =1
+
+            Icon3 As icon.Person:
+                Color: =RGBA(255, 255, 255, 1)
+                Icon: =Icon.Person
+                OnSelect: =Navigate(Profile, ScreenTransition.Cover);
+                X: =20
+                Y: =20
+                ZIndex: =2
+
+            Icon5 As icon.Settings:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =50
+                Icon: =Icon.Settings
+                OnSelect: =Navigate('Profile - Settings', ScreenTransition.Cover)
+                Width: =50
+                X: =Parent.Width - Self.Width - 20
+                Y: =20
+                ZIndex: =3
+
+        Container17 As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =3
+
+            Icon6 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.ToolsWrench
+                OnSelect: =Navigate('Facility Request - Home')
+                Width: =128
+                X: =125
+                Y: =69
+                ZIndex: =2
+
+            Label1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Facility Requests"
+                Width: =204
+                X: =87
+                Y: =206
+                ZIndex: =3
+
+            Icon6_1 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.Airplane
+                OnSelect: |-
+                    =//Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                    Navigate('Time Off Options',ScreenTransition.Cover)
+                Rotation: =-45
+                Width: =128
+                X: =375
+                Y: =69
+                ZIndex: =4
+
+            Label1_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: |-
+                    =//Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                    Navigate('Time Off Options',ScreenTransition.Cover)
+                Size: =21
+                Text: ="Time Off Requests"
+                Width: =204
+                X: =337
+                Y: =206
+                ZIndex: =5
+
+            Icon6_2 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.ListWatchlistRemind
+                OnSelect: =Navigate('Training Options', ScreenTransition.Cover)
+                Width: =128
+                X: =125
+                Y: =379
+                ZIndex: =6
+
+            Label1_2 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: =Navigate('Training Tracker - Home', ScreenTransition.Cover)
+                Size: =21
+                Text: ="Training"
+                Width: =204
+                X: =87
+                Y: =516
+                ZIndex: =7
+
+            "'HomeScreen Admin Icon' As icon.ToolsWrench":
+                Height: =128
+                Icon: =Icon.Tools
+                OnSelect: =Navigate('Admin - Tools', ScreenTransition.Cover)
+                Visible: =CountRows(UserRecord.Capabilities) > 0
+                Width: =128
+                X: =375
+                Y: =379
+                ZIndex: =8
+
+            "'HomeScreen Admin Label' As label":
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: =Navigate('Admin - Tools', ScreenTransition.Cover)
+                Size: =21
+                Text: ="Admin Tools"
+                Visible: =CountRows(UserRecord.Capabilities) > 0
+                Width: =204
+                X: =337
+                Y: =516
+                ZIndex: =9
+
+            Icon7 As icon.Computer:
+                Height: =128
+                Icon: =Icon.Laptop
+                Width: =128
+                X: =125
+                Y: =634
+                ZIndex: =10
+
+            Label9 As label:
+                Align: =Align.Center
+                Height: =70
+                OnSelect: |-
+                    =Launch("https://apps.gov.powerapps.us/play/e/default-e64b3773-9890-4a2f-87cd-23725df35ace/a/f6450f20-7440-48ad-9e16-de22b828b577?tenantId=e64b3773-9890-4a2f-87cd-23725df35ace&hint=fe0146ca-40da-4b3d-94ae-91d7acbb3dda&sourcetime=1731022214913")
+                Size: =21
+                Text: ="Launch Helpdesk"
+                Width: =175
+                X: =101
+                Y: =746
+                ZIndex: =11
+
+            Icon7_2 As icon:
+                Height: =112
+                Icon: =Icon.Globe
+                OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                Width: =112
+                X: =382
+                Y: =634
+                ZIndex: =12
+
+            Label9_1 As label:
+                Align: =Align.Center
+                Height: =70
+                OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                Size: =21
+                Text: ="Resources"
+                Width: =175
+                X: =351
+                Y: =746
+                ZIndex: =13
+

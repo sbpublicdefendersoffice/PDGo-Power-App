@@ -1,0 +1,439 @@
+"'TO Request Screen' As screen":
+    OnVisible: =If(!IsBlank(Edit),Select(Button17))
+
+    "'TO Request Screen Main Container' As groupContainer.verticalAutoLayoutContainer":
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingBottom: =1
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'TO Request Screen Header' As groupContainer.horizontalAutoLayoutContainer":
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: =75
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =1
+
+            TOHeaderContainer As groupContainer.manualLayoutContainer:
+                Height: =225
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height
+                LayoutMinWidth: =250
+                Width: =Parent.Width
+                ZIndex: =5
+
+                "'TO Request Screen Header Back' As icon.ArrowLeft":
+                    Color: =fxTheme.Header.TextColor
+                    Icon: =Icon.ArrowLeft
+                    OnSelect: =Back();
+                    ZIndex: =1
+
+                "'TO Request Screen Header Text' As label":
+                    Align: =Align.Center
+                    Color: =fxTheme.Header.TextColor
+                    Font: =Font.Lato
+                    Size: =20
+                    Text: ="Requests"
+                    X: =(Parent.Width-Self.Width)/2
+                    Y: =(Parent.Height-Self.Height)/2
+                    ZIndex: =2
+
+                "'TO Request Screen Header Profile' As image":
+                    Image: =
+                    ImagePosition: =ImagePosition.Fill
+                    Visible: =false
+                    ZIndex: =3
+
+                "'TO Request Screen Header Name' As label":
+                    Font: =Font.Lato
+                    Size: =15
+                    Text: ="Hello, " & User().FullName
+                    Visible: ='TO Request Screen'.Size<>1
+                    X: =(Parent.Width-Self.Width)/2
+                    Y: =(Parent.Height-Self.Height)/2
+                    ZIndex: =4
+
+                Icon1 As icon.Calendar:
+                    Color: =RGBA(255, 255, 255, 1)
+                    Icon: =Icon.AddToCalendar
+                    X: =Parent.Width-Self.Width
+                    Y: =(Parent.Height-Self.Height)/2
+                    ZIndex: =5
+
+                Button11 As button:
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =Icon1.Height
+                    HoverFill: =ColorFade(RGBA(56, 96, 178, .25), -20%)
+                    OnSelect: =Navigate('TO Request Date Screen',ScreenTransition.Cover)
+                    PressedFill: =ColorFade(RGBA(56, 96, 178, .50), -20%)
+                    Size: =24
+                    Text: =
+                    Width: =Icon1.Width
+                    X: =Icon1.X
+                    Y: =Icon1.Y
+                    ZIndex: =6
+
+        "'Send Request Container' As groupContainer.manualLayoutContainer":
+            FillPortions: =0
+            Height: =Parent.Height/3
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =7
+
+            "'TO Request Screen Dates Gallery' As gallery.galleryVertical":
+                '#CopilotOverlayLabel': ="Filtered"
+                DelayItemLoading: =true
+                Height: ='TO Request Screen Submit Button'.Y-5
+                Items: =RequestDates
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: |-
+                    =//If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+                    75
+                Width: =Parent.Width
+                ZIndex: =1
+
+                "'TO Request Screen Dates Gallery Columns' As groupContainer.horizontalAutoLayoutContainer":
+                    Height: =Parent.TemplateHeight
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                    LayoutGridColumns: =6
+                    LayoutGridRows: =6
+                    LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                    "'TO Request Screen Dates Date Range' As label":
+                        Align: =Align.Center
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =ThisItem.StartDate & "-" & ThisItem.EndDate
+                        Width: |
+                            =
+                            Parent.Width/4
+                        ZIndex: =1
+
+                    "'TO Request Screen Dates Time Range' As label":
+                        Align: =Align.Center
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =ThisItem.StartTime & "-" & ThisItem.EndTime
+                        Width: =Parent.Width/4
+                        ZIndex: =2
+
+                    "'TO Request Screen Dates Reason' As label":
+                        Align: =Align.Center
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =40
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: |
+                            =ThisItem.Reason
+                        Width: =Parent.Width/6
+                        ZIndex: =3
+
+                    "'TO Request Screen Dates Edit Button' As button":
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =50
+                        OnSelect: |-
+                            =Navigate('TO Request Date Screen', ScreenTransition.Cover, {Edit: ThisItem})
+                        Size: =10
+                        Text: ="Edit"
+                        Width: =Parent.Width/8
+                        ZIndex: =5
+
+                    "'TO Request Screen Dates Delete Button' As button":
+                        Fill: =RGBA(151, 0, 0, 1)
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        OnSelect: =Remove(RequestDates, ThisItem)
+                        Size: =10
+                        Text: ="Delete"
+                        Width: =Parent.Width/8
+                        ZIndex: =6
+
+            "'TO Request Screen Add Date Button' As button":
+                Fill: =RGBA(56, 96, 178, .80)
+                Font: =Font.Lato
+                OnSelect: =Navigate('TO Request Date Screen')
+                Text: ="Add Request"
+                Visible: =false
+                Y: =303
+                ZIndex: =2
+
+            "'TO Request Screen Comments Input' As text":
+                Default: =If(IsBlank(Edit), "", Edit.Comments)
+                Font: =Font.Lato
+                HintText: ="Additional Comments"
+                Mode: =TextMode.MultiLine
+                Visible: =false
+                ZIndex: =3
+
+            "'TO Request Screen Submit Button' As button":
+                Font: =Font.Lato
+                Height: =64
+                OnSelect: |
+                    =
+                    /*
+                    If(!IsBlankOrError(Edit), Patch(TimeOffRequests, Edit, {
+                        Status: {Value: "Cancelled"}
+                    }));
+                    */
+                    
+                    With({
+                            Request: Patch(TimeOffRequests, Defaults(TimeOffRequests), {
+                            Reason: 'TO Request Screen Comments Input'.Text,
+                            Requester: UserRecord.ID,
+                            Status: {Value: "Pending"},
+                            Comments: ""
+                        })
+                    },
+                        ForAll(RequestDates, With({Date: ThisRecord},
+                                Patch(TimeOffRequestDays,
+                                    If(IsBlankOrError(Date.ID),
+                                        Defaults(TimeOffRequestDays),
+                                        LookUp(TimeOffRequestDays, ID = Date.ID)
+                                    ),
+                                    {
+                                        //Request: {Id: Request.ID, Value: Request.ID},\
+                                        Request: Request.ID,
+                                        StartDate: Date.StartDate,
+                                        EndDate: Date.EndDate,
+                                        EntireDay: Date.EntireDay,
+                                        StartTime: Date.StartTime,
+                                        EndTime: Date.EndTime,
+                                        MetricDate: Concatenate(Month(Today()),"/",Year(Today())),
+                                        //Reason:{ Id: LookUp(RequestCodes, Title = Date.Reason).ID, Value: Date.Reason },
+                                        Reason: Date.Reason,
+                                        AdditionalComments: Date.Comments,
+                                        ITEquipment: Date.ITEquipment
+                                    }
+                                )
+                            );
+                        );
+                    );
+                    
+                    Clear(RequestDates);
+                    Reset('TO Request Screen Comments Input');
+                    
+                    Navigate('General Success Screen', ScreenTransition.CoverRight);
+                Text: ="Submit Request"
+                Width: =Parent.Width/1.1
+                X: =(Parent.Width-Self.Width)/2
+                Y: =Parent.Height-(1.125*Self.Height)
+                ZIndex: =4
+
+        "'Pending Requests' As groupContainer.manualLayoutContainer":
+            FillPortions: =0
+            Height: =Parent.Height/3
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =8
+
+            "'TO Request Screen Dates Gallery_1' As gallery.galleryVertical":
+                '#CopilotOverlayLabel': ="Filtered"
+                DelayItemLoading: =true
+                Height: =Parent.Height-Label3.Height
+                Items: =Sort(Filter(TimeOffRequests,Requester = UserData.ID And Status.Value = "Pending"),ID,SortOrder.Descending)
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+                Width: =Parent.Width
+                Y: =40
+                ZIndex: =1
+
+                "'TO Request Screen Dates Gallery Columns_1' As groupContainer.horizontalAutoLayoutContainer":
+                    Height: =Parent.TemplateHeight
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                    LayoutGap: =20
+                    LayoutGridColumns: =6
+                    LayoutGridRows: =6
+                    LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                    "'TO Request Screen Dates Date Range_1' As label":
+                        Align: =Align.Center
+                        FillPortions: =1
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =LookUp(TimeOffRequestDays,ThisItem.ID = Request).StartDate & "-" & LookUp(TimeOffRequestDays,ThisItem.ID = Request).EndDate
+                        Width: |
+                            =
+                            Parent.Width*.20
+                        ZIndex: =1
+
+                    "'TO Request Screen Dates Time Range_1' As label":
+                        Align: =Align.Center
+                        FillPortions: =1
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =ThisItem.Status.Value   
+                        Width: =Parent.Width*.20
+                        ZIndex: =2
+
+                    "'TO Request Screen Dates Reason_1' As label":
+                        Align: =Align.Center
+                        FillPortions: =1
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =40
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =DateDiff(Today(),LookUp(TimeOffRequestDays,Request = ThisItem.ID).StartDate,TimeUnit.Days)&" Days"
+                        Width: =Parent.Width*.10
+                        ZIndex: =3
+
+            Label3 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =fxTheme.Header.BGColor
+                Font: =Font.Lato
+                Size: =20
+                Text: ="Pending Requests"
+                Width: =Parent.Width
+                ZIndex: =2
+
+        "'Request History' As groupContainer.manualLayoutContainer":
+            FillPortions: =0
+            Height: =Parent.Height/3
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =9
+
+            "'TO Request Screen Dates Gallery_2' As gallery.galleryVertical":
+                '#CopilotOverlayLabel': ="Filtered"
+                DelayItemLoading: =true
+                Height: =Parent.Height-Label3_1.Height
+                Items: =Sort(Filter(TimeOffRequests,Requester = UserData.ID And Status.Value <> "Pending"),ID,SortOrder.Descending)
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+                Width: =Parent.Width
+                Y: =40.333333333333314
+                ZIndex: =1
+
+                "'TO Request Screen Dates Gallery Columns_2' As groupContainer.horizontalAutoLayoutContainer":
+                    Height: =Parent.TemplateHeight
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                    LayoutGap: =20
+                    LayoutGridColumns: =6
+                    LayoutGridRows: =6
+                    LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                    "'TO Request Screen Dates Date Range_2' As label":
+                        Align: =Align.Center
+                        FillPortions: =1
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =LookUp(TimeOffRequestDays,ThisItem.ID = Request).StartDate & "-" & LookUp(TimeOffRequestDays,ThisItem.ID = Request).EndDate
+                        Width: |
+                            =
+                            Parent.Width*.20
+                        ZIndex: =1
+
+                    "'TO Request Screen Dates Time Range_2' As label":
+                        Align: =Align.Center
+                        FillPortions: =1
+                        Font: =Font.Lato
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =60
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =ThisItem.Status.Value   
+                        Width: =Parent.Width*.20
+                        ZIndex: =2
+
+                    "'TO Request Screen Dates Reason_2' As label":
+                        Align: =Align.Center
+                        FillPortions: =1
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinWidth: =40
+                        Size: =If('TO Request Screen'.Size=1,15,20)
+                        Text: =DateDiff(Today(),LookUp(TimeOffRequestDays,Request = ThisItem.ID).StartDate,TimeUnit.Days)&" Days"
+                        Width: =Parent.Width*.10
+                        ZIndex: =3
+
+            Label3_1 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =fxTheme.Header.BGColor
+                Font: =Font.Lato
+                Size: =20
+                Text: ="Completed Requests"
+                Width: =Parent.Width
+                Y: =0.3333333333333144
+                ZIndex: =2
+
+    Button17 As button:
+        Height: =70
+        OnSelect: |-
+            =Navigate('TO Request Date Screen', ScreenTransition.Cover, {Edit: Edit})
+        Size: =24
+        Text: =
+        Visible: =false
+        Width: =280
+        Y: =290
+        ZIndex: =2
+

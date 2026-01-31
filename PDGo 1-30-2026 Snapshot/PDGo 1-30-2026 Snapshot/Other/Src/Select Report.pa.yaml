@@ -1,0 +1,116 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Select Report:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Container40_1:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Height: =Parent.Height-Container16_6.Height
+            Width: =Parent.Width
+            Y: =Container16_6.Height
+          Children:
+            - Icon7_3:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =112
+                  Icon: =Icon.Globe
+                  OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                  Width: =112
+                  X: =109
+                  Y: =76
+            - Label9_2:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                  Text: ="MCLE Only"
+                  Width: =175
+                  X: =78
+                  Y: =188
+            - Icon7_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =112
+                  Icon: =Icon.Globe
+                  OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                  Width: =112
+                  X: =409
+                  Y: =76
+            - Label9_6:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                  Text: ="Non MCLE"
+                  Width: =175
+                  X: =378
+                  Y: =188
+            - Icon7_5:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(0, 18, 107, 1)
+                  Height: =112
+                  Icon: =Icon.Globe
+                  OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                  Width: =112
+                  X: =258
+                  Y: =344
+            - Label9_7:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  OnSelect: =Navigate('Resources Tab',ScreenTransition.Cover)
+                  Text: ="All"
+                  Width: =175
+                  X: =227
+                  Y: =456
+      - Container16_6:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(0, 18, 107, 1)
+            Width: =640
+          Children:
+            - Label4_26:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =FontWeight.Bold
+                  Height: =111
+                  Size: =48
+                  Text: ="Select a Report"
+                  Width: =Parent.Width
+                  Y: =54
+            - Icon3_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Icon: =Icon.ArrowLeft
+                  OnSelect: =Back()
+                  X: =21
+                  Y: =33

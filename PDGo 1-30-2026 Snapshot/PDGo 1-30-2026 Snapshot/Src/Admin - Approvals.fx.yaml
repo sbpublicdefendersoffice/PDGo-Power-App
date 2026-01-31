@@ -1,0 +1,144 @@
+"'Admin - Approvals' As screen":
+    OnVisible: =Refresh(LimboTrainings)
+
+    "'Background Color_10' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(25, 53, 110, 1)
+        Height: =111
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Container15_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =2
+
+        Container14_6 As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: ='Background Color_10'.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =20
+            PaddingRight: =20
+            Width: ='Background Color_10'.Width
+            X: =
+            Y: =
+            ZIndex: =1
+
+            Icon11_6 As icon.ArrowLeft:
+                Color: =fxTheme.Header.TextColor
+                Height: =fxTheme.Header.IconSize
+                Icon: =Icon.Reload
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                OnSelect: |-
+                    =//Navigate('Home Screen', ScreenTransition.CoverRight)
+                    Refresh(LimboTrainings)
+                Width: =fxTheme.Header.IconSize
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Label15_7 As label:
+                Align: =Align.Center
+                AlignInContainer: =AlignInContainer.Center
+                Color: =fxTheme.Header.TextColor
+                Font: =Font.Lato
+                Height: =70
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =25
+                Text: ="Select a Meeting to view details"
+                Width: =Parent.Width/1.1
+                X: =(Parent.Width-Self.Width)/2
+                Y: =15
+                ZIndex: =2
+
+        Gallery1_3 As gallery.variableTemplateHeightGallery:
+            BorderThickness: =3
+            DelayItemLoading: =true
+            FillPortions: =0
+            Height: =(Parent.Height)- Container14_6.Height*2
+            Items: =LimboTrainings
+            Layout: =Layout.Vertical
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =287
+            LayoutMinWidth: =Parent.Width
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplateSize: =150
+            Width: =Parent.Width
+            Y: =111
+            ZIndex: =6
+
+            Container22_3 As groupContainer.manualLayoutContainer:
+                BorderThickness: =1
+                Fill: =RGBA(237, 237, 237, 1)
+                Height: =150
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                maximumHeight: =11360
+                maximumWidth: =640
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Width: =Parent.TemplateWidth
+                ZIndex: =1
+
+            Label5_1 As label:
+                Align: =Align.Center
+                Height: =64
+                OnSelect: =Select(Parent)
+                Size: =21
+                Text: =ThisItem.Training
+                Width: =Parent.TemplateWidth
+                Y: =43
+                ZIndex: =2
+
+            Button14_1 As button:
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =150
+                HoverFill: =Color.Transparent
+                OnSelect: |-
+                    =Navigate('Training Approvals - View Training Details', ScreenTransition.CoverRight,{meetingCandidate:ThisItem})
+                Size: =24
+                Text: =
+                Width: =Parent.TemplateWidth
+                ZIndex: =3
+
+        Container43 As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =7
+
+            Button24 As button:
+                Height: =70
+                OnSelect: =Navigate('Upload Calendar files')
+                Size: =24
+                Text: ="Upload a File"
+                Width: =280
+                X: =(Parent.Width-Self.Width)/2
+                Y: =(Parent.Height-Self.Height)/2
+                ZIndex: =1
+
